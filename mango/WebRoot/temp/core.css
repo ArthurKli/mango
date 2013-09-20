@@ -1,0 +1,229 @@
+body, ul, li, div, h1, h2{
+	padding:0;
+	margin:0;
+	font-size: 10px;
+	color: #A8A8A8;
+	font-family: "幼圆";
+}
+ul{list-style:none;}
+a{text-decoration:none;}
+.clr{clear:both;overflow:hidden;height:0;}
+a#close9{position:absolute;top:10px;right:10px;display:block;width:60px;padding:4px 0;text-align:center;border:1px solid #85B6E2;color:#FFFFFF; font-size:14px;}
+a#close9:hover{color:#fff;border:1px solid #85B6E2;background:#85B6E2;}
+a#close8{position:absolute;top:10px;right:10px;display:block;width:60px;padding:4px 0;text-align:center;border:1px solid #85B6E2;color:#FFFFFF; font-size:14px;}
+a#close8:hover{color:#fff;border:1px solid #85B6E2;background:#85B6E2;}
+a#close7{position:absolute;top:10px;right:10px;display:block;width:60px;padding:4px 0;text-align:center;border:1px solid #85B6E2;color:#FFFFFF; font-size:14px;}
+a#close7:hover{color:#fff;border:1px solid #85B6E2;background:#85B6E2;}
+
+
+
+
+#blk9{width:550px;position:relative;display:none;}
+#blk8{width:500px;position:relative;display:none;}
+#blk7{width:550px;position:relative;display:none;}
+
+
+
+
+#blk9 #main9{
+	background:#fff;
+	height:232px;
+	
+}
+#blk8 #main8{background:#fff; text-align:center;}
+#blk7 #main7{background:#fff; text-align:center;}
+
+
+#blk9 #main9 h2{font:bold 25px "Microsoft YaHei";
+padding:10px 20px 2px;color:#FFFFFF; 
+background-image:url(images/login.png);
+background-position:center; 
+background-repeat:no-repeat;
+text-indent:-999px;
+display:block;width:125px;height:60px;
+}
+#blk8 #main8 h2{font:bold 25px "Microsoft YaHei";padding:10px 20px 2px;color:#FFFFFF;}
+#blk7 #main7 h2{}
+
+#blk9 #main9 ul{padding:20px;zoom:1;overflow:hidden;font-size:12px;}
+#blk8 #main8 ul{padding:20px;zoom:1;overflow:hidden;font-size:12px;}
+#blk7 #main7 ul{padding:20px;zoom:1;overflow:hidden;font-size:12px;}
+
+#blk9 #main9 ul li{
+	float:left;
+	width:100px;
+	text-align:center;
+	line-height:20px;
+	margin-bottom:0px;
+}
+#blk8 #main8 ul li{float:left;width:100px;text-align:center;line-height:30px;margin-bottom:10px;}
+#blk7 #main7 ul li{float:left;width:100px;text-align:center;line-height:30px;margin-bottom:10px;}
+
+#blk9 #main9 ul li a{color:#333;display:block;}
+#blk8 #main8 ul li a{color:#333;display:block;}
+#blk7 #main7 ul li a{color:#333;display:block;}
+
+#blk9 #main9 ul li a:hover{background:#85B6E2;color:#fff;font-weight:bold;font-size:14px;}
+#blk8 #main8 ul li a:hover{background:#85B6E2;color:#fff;font-weight:bold;font-size:14px;}
+#blk7 #main7 ul li a:hover{background:#85B6E2;color:#fff;font-weight:bold;font-size:14px;}
+
+#blk8 #main8 td{
+font:Arial, Helvetica, sans-serif; font-size:18px;
+}
+#blk7 #main7 td{
+font:Arial, Helvetica, sans-serif; font-size:18px;
+}
+
+
+
+
+#top9{
+	height: 70px;
+	background-image: url(images/head.png);
+}
+#top8{ height: 70px;
+	background-image:url(images/info/top.png);}
+#top7{ height: 70px;
+	background-image: url(images/retop.png);}
+#myname{
+background-image:url(images/username.png);
+background-position:center;
+background-repeat:no-repeat;
+text-indent:-999px;
+display:block;width:125px;height:25px;
+}
+#pwdd{
+background-image:url(images/password.png);
+background-position:center;
+background-repeat:no-repeat;
+text-indent:-999px;
+display:block;width:125px;height:25px;
+}
+
+
+
+
+#username,#password{
+background:url(images/input.png) no-repeat left ; padding:1px 0px 0px 0px; height:25px;
+border-left:0px;border-top:0px;border-right:0px;border-bottom:1px;
+}
+#name{
+background: no-repeat left center; padding:10px 0px 0px 4px; height:10px;
+background-color:#FFFFFF;
+}
+
+#textarea{
+background: no-repeat left center; padding:10px 0px 0px 4px; height:20px;
+background-color:#FFFFFF;
+resize: none;
+}
+#bgtp{
+	height:232px;
+	background-position:left top;
+	background-image: url(images/body.png);
+	background-repeat: no-repeat;
+}
+#bjtp2{
+	height:305px;
+	background-image: url(images/info/body.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+#bjtp3{
+	height:300px;
+	background-image: url(images/rebody.png);
+	background-repeat: repeat-y;
+	background-position: center;
+}
+
+#user{float: left;
+	position: static;
+	margin-top: 3px;}
+#pwd{
+	float: left;
+	position: static;
+	margin-top: 3px;
+}
+
+#button{
+	padding-top: 9px;
+	padding-left: 45px;	
+	}
+	
+	#apply{
+	background-image: url(images/bbgg.jpg);
+		}
+#ele7{
+	float: right;
+	margin-top: -120px;
+	margin-right: 30px;
+	font-size: 14px;
+	text-decoration: underline;
+	font-family: "幼圆";
+	color: #FFF;
+	}
+	
+.reinput {
+	background-image: url(images/reinput.png); no-repeat left ; padding:1px 0px 0px 0px; height:22px;
+border-left:0px;border-top:0px;border-right:0px;border-bottom:1px
+}
+#submit{
+	background-image: url(images/Re.png);
+	background-repeat: no-repeat;
+	height: 25px;
+	width: 80px;
+	cursor:pointer;
+	border:0px solid;
+		}
+#back{
+	background-image: url(images/reback.png);
+	background-repeat: no-repeat;
+	height: 25px;
+	width: 80px;
+	cursor:pointer;
+	border:0px solid;
+	
+	}
+#button2{
+	padding-left: 5px;
+
+	}
+#button3{
+	padding-right: 5px;
+	padding-bottom: 2px;
+	}
+#button4{
+	padding-left: 5px;
+	padding-bottom: 17px;
+	}
+#button5{
+	padding-right: 5px;
+	padding-bottom: 17px;
+	}
+#rebody{
+	background-image: url(images/rebody.png);
+	background-repeat: no-repeat;
+}
+#reniname{background-image:url(images/info/text.png); no-repeat left ; padding:1px 0px 0px 0px; height:22px;
+border-left:0px;border-top:0px;border-right:0px;border-bottom:1px
+	}
+#rework{
+	background-image:url(images/info/submit.png);
+	background-repeat: no-repeat;
+	height: 25px;
+	width: 80px;
+	cursor:pointer;
+	border:0px solid;
+	}
+#reset{
+	background-image:url(images/info/reset.png);
+	background-repeat: no-repeat;
+	height: 25px;
+	width: 80px;
+	cursor:pointer;
+	border:0px solid;
+	}
+.sel{
+	font-family: "幼圆";
+	font-size: 14px;	
+	}

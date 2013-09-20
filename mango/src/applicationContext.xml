@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd    
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd    
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+	http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
+	<aop:aspectj-autoproxy />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<context:annotation-config />
+	<context:component-scan base-package="cn.net.mpay.dao" />
+	<context:component-scan base-package="cn.net.mpay.mdao" />
+	<context:component-scan base-package="cn.net.mpay.business" />
+	<context:component-scan base-package="cn.net.mpay.action" />
+	<!-- JdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<!-- SessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--
+			<property name="configLocation"
+			value="classpath:mybatis.xml"></property>
+		-->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- DataSource -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>jdbc:mysql://localhost:3306/manager_test</value>
+		</property>
+		<property name="user">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>123</value>
+		</property>
+		<property name="minPoolSize">
+			<value>5</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>200</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>1800</value>
+		</property>
+		<property name="acquireIncrement">
+			<value>5</value>
+		</property>
+		<property name="maxStatements">
+			<value>0</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>5</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>1800</value>
+		</property>
+		<property name="acquireRetryAttempts">
+			<value>30</value>
+		</property>
+		<property name="breakAfterAcquireFailure">
+			<value>true</value>
+		</property>
+		<property name="testConnectionOnCheckout">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- mybatis持久层 -->
+	<bean id="mybatisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="cn.net.mpay.mdao.MybatisDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+		<bean id="chatDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="cn.net.mpay.mdao.ChatDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="memberDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="cn.net.mpay.mdao.MemberDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	
+	<!-- DWR 配置  -->
+	<context:component-scan base-package="cn.net.mpay.dwr" />
+	<dwr:annotation-config id="dwrid" /> 
+	 <!-- 扫描需要转换的java对象 -->  
+    <dwr:annotation-scan base-package="cn.net.mpay.dwr" />  
+    <dwr:annotation-scan base-package="cn.net.mpay.bean" /> 
+	<!-- dwr初始化配置 --> 
+    <dwr:configuration >
+    <dwr:convert type="bean" class="cn.net.mpay.bean.User" />
+    </dwr:configuration>
+
+
+</beans>

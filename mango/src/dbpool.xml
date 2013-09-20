@@ -1,0 +1,120 @@
+<dbpool-config>
+  
+  <!--
+     每个dbpool配置对应一个连接池
+     
+  onlyForDis属性：当为true时，表明只应用于分布式事务；如果没有此属性或此属性为非"true"字符串，表明即可以用于非
+  	分布式连接池，也可以用于分布式。
+  type属性：指定连接池 bonecp或c3p0
+  driverClassName：数据库的驱动名称
+  url： 连接字符串
+  username：用户名
+  password：用户密码
+  checkoutTimeout：当数据库满时，等待从连接池里取出connection的最长时间，毫秒为单位
+  maxIdleTime ：最长空隙时间，以秒为单位，如果是bonecp连接池，必须是60的倍数。多于连接池里可容纳的最小connection数（由minPoolSize指定）的多余connection超过此时间，会被释放
+  maxPoolSize ：连接池可容纳connection的最大数
+  minPoolSize： 连接池可容纳的connection的最小数
+  idleConnectionTestPeriod: 空闲连接的检测时间，如果无效重连。此参数以秒为单位,如果是bonecp，必须是60的倍数
+  maxStatements：缓存的statement数
+  
+  -->
+  <dbpool name="tt1" type="c3p0"> 
+    <property name="driverClassName">com.mysql.jdbc.Driver</property>
+   <!-- <property name="url">jdbc:mysql://113.105.231.53:3306/mpay?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</property>
+    <property name="username">mpay</property>
+    <property name="password">jinalone5219901</property>
+    -->
+     <property name="url">jdbc:mysql://113.105.231.53:3306/mpay?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</property>
+    <property name="username">mpay</property>
+    <property name="password">jinalone5219901</property>
+     <property name="checkoutTimeout">600000</property>
+    <property name="idleConnectionTestPeriod">60</property>
+    <property name="maxIdleTime">60</property>
+    <property name="maxPoolSize">10</property>
+    <property name="minPoolSize">1</property>
+    <property name="maxStatements">100</property>
+  </dbpool>
+  <dbpool name="tt2" type="c3p0"> 
+    <property name="driverClassName">com.mysql.jdbc.Driver</property>
+   <!-- <property name="url">jdbc:mysql://113.105.231.53:3306/mpay?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</property>
+    <property name="username">mpay</property>
+    <property name="password">jinalone5219901</property>
+    -->
+     <property name="url">jdbc:mysql://localhost:3306/shop?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</property>
+    <property name="username">root</property>
+    <property name="password">123</property>
+     <property name="checkoutTimeout">600000</property>
+    <property name="idleConnectionTestPeriod">60</property>
+    <property name="maxIdleTime">60</property>
+    <property name="maxPoolSize">200</property>
+    <property name="minPoolSize">5</property>
+    <property name="maxStatements">100</property>
+  </dbpool>
+<!-- <dbpool name="tt1" type="c3p0"> -->
+<!--    <property name="driverClassName">com.mysql.jdbc.Driver</property>-->
+<!--    <property name="url">jdbc:mysql://192.168.112.237:3306/mobileheart3?useUnicode=true&amp;characterEncoding=utf8</property>-->
+<!--    <property name="username">gameuser</property>-->
+<!--    <property name="password">jb98</property>-->
+<!--    <property name="checkoutTimeout">60000</property>-->
+<!--    <property name="idleConnectionTestPeriod">60</property>-->
+<!--    <property name="maxIdleTime">60</property>-->
+<!--    <property name="maxPoolSize">10</property>-->
+<!--    <property name="minPoolSize">10</property>-->
+<!--    <property name="maxStatements">20</property>-->
+<!--  </dbpool>-->
+<!--    <dbpool name="gglook"> -->
+<!--    <property name="driverClassName">com.mysql.jdbc.Driver</property>-->
+<!--    <property name="url">jdbc:mysql://localhost:3306/news?useUnicode=true&amp;characterEncoding=GBK</property>-->
+<!--    <property name="username">root</property>-->
+<!--    <property name="password">root</property>-->
+<!---->
+<!--    <property name="checkoutTimeout">5000</property>-->
+<!--  -->
+<!--    <property name="maxIdleTime">120000</property>-->
+<!--    <property name="maxPoolSize">20</property>-->
+<!--    <property name="minPoolSize">10</property>-->
+<!--  -->
+<!--  </dbpool>-->
+<!--  <dbpool name="gglook2" > -->
+<!--    <property name="driverClassName">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>-->
+<!--    <property name="url">jdbc:sqlserver://192.168.206.243:1433;DatabaseName=test</property>-->
+<!--    <property name="username">sa</property>-->
+<!--    <property name="password">sa</property>-->
+<!--     <property name="checkoutTimeout">6000</property>-->
+<!--    <property name="maxIdleTime">30</property>-->
+<!--    <property name="maxPoolSize">30</property>-->
+<!--    <property name="minPoolSize">30</property>-->
+<!---->
+<!--  </dbpool>-->
+  
+<!--    <dbpool name="gglook3" > -->
+<!--    <property name="driverClassName">com.microsoft.jdbc.sqlserver.SQLServerDriver</property>-->
+<!--    <property name="url">jdbc:microsoft:sqlserver://192.168.206.243:1433;DatabaseName=test</property>-->
+<!--    <property name="username">sa</property>-->
+<!--    <property name="password">sa</property>-->
+<!--     <property name="checkoutTimeout">6000</property>-->
+<!--    <property name="maxIdleTime">30</property>-->
+<!--    <property name="maxPoolSize">30</property>-->
+<!--    <property name="minPoolSize">30</property>-->
+<!---->
+<!--  </dbpool>-->
+<!--  <dbpool name="tt2" onlyForDis="true"> -->
+<!--    <property name="driverClassName">com.mysql.jdbc.Driver</property>-->
+<!--    <property name="url">jdbc:mysql://192.168.206.57:3306/test?useUnicode=true&amp;characterEncoding=UTF-8</property>-->
+<!--    <property name="username">root</property>-->
+<!--    <property name="password">160376</property>-->
+<!--     <property name="checkoutTimeout">6000</property>-->
+<!--    <property name="maxIdleTime">30</property>-->
+<!--    <property name="maxPoolSize">6</property>-->
+<!--    <property name="minPoolSize">6</property>-->
+<!---->
+<!--  </dbpool>-->
+  <!--
+     指定那些dbpool配置的连接池属于分布式事务
+  name：用于标示一个分布式事务所用到的连接池
+  dis-transaction内容： 以英文逗号隔开，逗号隔开的名字对应于dbpool的name属性的值，用于标示对应的连接池
+  
+  -->
+<!--  <dis-transaction name="dist1">tt1,tt2</dis-transaction>-->
+
+</dbpool-config>
