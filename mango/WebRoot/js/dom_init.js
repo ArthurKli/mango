@@ -3,6 +3,7 @@ $(document).ready(function() {
 //	bringSelectedIframeToTop(true);
   	 $(window).load(function() {
          dwr.engine.setActiveReverseAjax(true);
+         dwr.engine.setNotifyServerOnPageUnload(true);
    	});
   	 //页面关闭时销毁session
 	 $(window).unload(function() {

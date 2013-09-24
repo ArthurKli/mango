@@ -12,10 +12,10 @@
 		</filter>
 	-->
 
- 
-  <session-config>   
-<session-timeout>300</session-timeout>   
-</session-config>
+
+	<session-config>
+		<session-timeout>300</session-timeout>
+	</session-config>
 
 
 	<filter>
@@ -69,12 +69,13 @@
 
 
 	<servlet>
-	    <servlet-name>dwr</servlet-name>
-        <servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>
-    <init-param>  
-      <param-name>activeReverseAjaxEnabled</param-name>  
-      <param-value>true</param-value>  
-    </init-param>  
+		<servlet-name>dwr</servlet-name>
+		<servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>activeReverseAjaxEnabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
 		<init-param>
 			<param-name>classes</param-name>
 			<param-value>java.lang.Object</param-value>
@@ -95,9 +96,21 @@
 	<servlet-mapping>
 		<servlet-name>dwr</servlet-name>
 		<url-pattern>/dwr/*</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping><!--
 
-	<!-- 默认访问页面 -->
+	<servlet>
+		<servlet-name>initScriptSession</servlet-name>
+		<servlet-class>cn.net.mpay.interceptor.InitScriptSession</servlet-class>
+		 如果需要自动加载，加下面一句 
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	 <servlet-mapping>  
+   <servlet-name>initScriptSession</servlet-name>  
+   <url-pattern>/</url-pattern>  
+  </servlet-mapping>  
+
+
+	--><!-- 默认访问页面 -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

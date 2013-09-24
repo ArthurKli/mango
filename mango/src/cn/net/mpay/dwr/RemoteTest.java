@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,15 +32,17 @@ public class RemoteTest {
 	private ChatDao cDao;
 	
 	@RemoteMethod
-	public String login(String uid) {
-		log.info("新session:"+uid);
+	public int login() {
+		HttpSession httpSession =WebContextFactory.get().getSession();
+		Integer sid =(Integer) httpSession.getAttribute("uid");
+		log.info("绑定httpsession:"+sid);
 		try {
-			this.setScriptSessionFlag(Integer.parseInt(uid));
+			this.setScriptSessionFlag(sid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return uid;
+		return sid;
 	}
 	@RemoteMethod
 	public String createUUID() {
@@ -102,7 +105,7 @@ public class RemoteTest {
 		final ScriptSessionFilter filter = new cn.net.mpay.util.TestScriptSessionFilter(userid);// 
 		Collection<ScriptSession> colls = Browser.getTargetSessions();
 		// Browser类是dwr3.0新增加的类，能够简化2.0版本的循环操作,而且更稳定和快速
-		Browser.withPageFiltered(page, filter, new Runnable() {
+		Browser.withAllSessionsFiltered(filter, new Runnable() {
 			public void run() {
 				Collection<ScriptSession> colls = Browser.getTargetSessions();
 				for (ScriptSession session : colls) {

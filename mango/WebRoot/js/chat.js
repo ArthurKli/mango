@@ -2,7 +2,7 @@
           var name='lfk';
           var pwd='123';
           var id=$("#myid").val();
-    	  RemoteTest.login(id,function(data){
+    	  RemoteTest.login(function(data){
               $("#userid").val(data);
               alert(data);
           });

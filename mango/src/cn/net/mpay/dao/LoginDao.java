@@ -1,11 +1,14 @@
 package cn.net.mpay.dao;
 
+import cn.net.mpay.bean.Member;
 import cn.net.mpay.bean.User;
 
 public interface LoginDao {
 	
 	public int findAll();
 	
-	public void regist(User u);
+	public int regist(Member mb);
+	
+	public boolean checkAccount(String account);
 
 }

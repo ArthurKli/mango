@@ -1,5 +1,7 @@
 package cn.net.mpay.action;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -11,6 +13,7 @@ import cn.net.mpay.bean.Member;
 import cn.net.mpay.bean.User;
 import cn.net.mpay.business.LoginService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 @Component("memberAction")
 @Scope("prototype")
@@ -27,10 +30,21 @@ public class MemberAction extends ActionSupport{
 	private final Log log = LogFactory.getLog(getClass());
 	
 	
-	public  String regist() throws Exception{
-		Member mb =new Member();
-		mb.setAccount(account);
-		return SUCCESS;
+//	public  String regist() throws Exception{
+//		Member mb =new Member();
+//		mb.setAccount(account);
+//		return SUCCESS;
+//	}
+	/**
+	 * demo : http://localhost:8080/mango/login2.action?org_id=1
+	 */
+	public  String login() throws Exception{
+		Map session = ActionContext.getContext().getSession();
+		session.put("uid", org_id);
+		
+		log.info("登陆成功：session=="+org_id);
+		
+		return "chat";
 	}
 
 

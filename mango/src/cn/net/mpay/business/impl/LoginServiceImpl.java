@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import cn.net.mpay.bean.Member;
 import cn.net.mpay.bean.User;
 import cn.net.mpay.business.LoginService;
 import cn.net.mpay.dao.LoginDao;
@@ -19,10 +20,15 @@ public class LoginServiceImpl implements LoginService {
 		return myDao.countALL();
 	}
 
-	public void regist(User u) {
+	public int regist(Member mb) {
 		System.out.println("進入service");
-		loginDao.regist(u);
+		return loginDao.regist(mb);
 		
+	}
+
+	public boolean checkAccount(String account) {
+		// TODO Auto-generated method stub
+		return loginDao.checkAccount(account);
 	}
 
 }

@@ -5,16 +5,22 @@
 <struts>
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<package name="Manager" extends="struts-default">
-		
+
+
 		<!-- 登录 -->
-		<action name="login" class="loginAction">
-			<result name="success">/index.jsp</result>
+		<action name="regist" class="loginAction" method="regist">
+			<result name="success">/success.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		<action name="all" class="loginAction" method="countAll">
 			<result name="success">/index.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+
+		<action name="login2" class="memberAction" method="login">
+			<result name="chat">/chat.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 	</package>
-	
+
 </struts>

@@ -1,11 +1,14 @@
 package cn.net.mpay.business;
 
+import cn.net.mpay.bean.Member;
 import cn.net.mpay.bean.User;
 
 public interface LoginService {
 	
 	public int findAll();
 	
-	public void regist(User u);
+	public int regist(Member mb);
+	
+	public boolean checkAccount(String account);
 
 }

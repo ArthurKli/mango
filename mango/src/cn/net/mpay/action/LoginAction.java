@@ -7,10 +7,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import cn.net.mpay.bean.Member;
 import cn.net.mpay.bean.User;
 import cn.net.mpay.business.LoginService;
 import cn.net.mpay.util.ActionValidate;
 
+import com.g3net.tool.CTime;
 import com.g3net.tool.MD5;
 import com.opensymphony.xwork2.ActionSupport;
 @Component("loginAction")
@@ -19,27 +21,73 @@ public class LoginAction extends ActionSupport{
 	@Resource(name = "loginService")
 	private LoginService loginService;
 	private String username;
+	private String account;
 	private String password;
 	private String password2;
+	private String email;
+	private String mobile;
+	
+	private String msg;
+	
 	
 	private final Log log = LogFactory.getLog(getClass());
 	
 	private User user;
 	//0正常 1某个选项为空  2pwd！=pwd2
-	private Integer msg;
+	private Integer code;
 	
 	
 	public  String execute() throws Exception{
-		msg =ActionValidate.dataValidate(user);
+		code =ActionValidate.dataValidate(user);
 //		log.info("状态码:"+msg);
-		if (msg!=0) {
+		if (code!=0) {
 			return "error";
 		}
 		password=user.getPassword();
 		user.setPassword(MD5.MD5generator(password,"utf-8"));
-		loginService.regist(user);
+//		loginService.regist(user);
 		return SUCCESS;
 	}
+	/**
+	 * http://localhost:8080/mango/regist.action?account=hong&password=123&password2=123&email=123@qq.com&mobile=110
+	 * @return
+	 * @throws Exception
+	 */
+	public String regist()throws Exception{
+		int code=ActionValidate.dataValidate(account, password, password2);
+		if (code!=0) {
+			return "error";
+		}
+		if(loginService.checkAccount(account)){
+			msg="用户名已存在！";
+			return "error";
+		}
+		
+		
+		Member mb =new Member();
+		mb.setPassword(MD5.MD5generator(password,"utf-8"));
+		mb.setAccount(account);
+		mb.setEmail(email);
+		mb.setMobile(mobile);
+		
+		
+		mb.setRegist_date(CTime.formatWholeDate());
+		
+		int i =loginService.regist(mb);
+		
+		log.info("注册信息："+i);
+	
+		if(i!=0){
+			msg="注册成功！  account="+ mb.getAccount();
+			
+		}
+		
+		
+		return SUCCESS;
+	}
+	
+	
+	
 	public String countAll()throws Exception{
 		int a=loginService.findAll();
 		log.info("总人数："+a);
@@ -79,12 +127,40 @@ public class LoginAction extends ActionSupport{
 		this.password2 = password2;
 	}
 
-	public Integer getMsg() {
+
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getMsg() {
 		return msg;
 	}
 
-	public void setMsg(Integer msg) {
+	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+
+	public Integer getCode() {
+		return code;
+	}
+
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 	
 
