@@ -50,7 +50,7 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="jdbcUrl">
-			<value>jdbc:mysql://localhost:3306/manager_test</value>
+			<value>jdbc:mysql://localhost:3306/manager_test?characterEncoding=utf-8</value>
 		</property>
 		<property name="user">
 			<value>root</value>
@@ -89,6 +89,16 @@
 			<value>false</value>
 		</property>
 	</bean>
+	
+	
+	  <!-- the only singleton instance of Db, that's all -->
+    <bean id="db" class="org.expressme.simplejdbc.Db">
+        <!-- which package your entity classes located -->
+        <property name="packageName" value="cn.net.mpay.bean" />
+        <!-- inject the jdbcTemplate bean -->
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+	
 
 	<!-- mybatis持久层 -->
 	<bean id="mybatisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">

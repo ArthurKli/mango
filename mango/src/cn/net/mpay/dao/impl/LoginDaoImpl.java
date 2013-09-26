@@ -2,7 +2,10 @@ package cn.net.mpay.dao.impl;
 
 import javax.annotation.Resource;
 
+import org.expressme.simplejdbc.Db;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import cn.net.mpay.bean.Member;
@@ -13,6 +16,10 @@ public class LoginDaoImpl implements LoginDao {
 	
 	@Resource(name = "jdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
+	@Resource
+	private Db simpleJdbc;
+	
+	
 
 	public int findAll() {
 		// TODO Auto-generated method stub
@@ -35,11 +42,16 @@ public class LoginDaoImpl implements LoginDao {
 			e.printStackTrace();
 		}
 		return 0;
+		
+	}
 	
-		
-
-//		jdbcTemplate.update(sql,new Object[]{u.getUsername(),u.getPassword(),u.getSex(),u.getPhone(),u.getBirthday()});
-		
+	public int registSimple(Member mb) {
+		try {
+			simpleJdbc.create(mb);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 	public boolean checkAccount(String account) {

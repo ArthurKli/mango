@@ -24,7 +24,31 @@ public class TestMemberDao {
 		
 		int i = mbDao.createMember(mb);
 		System.out.println("成功否："+i);
+	}
+	@Test
+	public void testLoginNormal(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");        
+		MemberDao mbDao = (MemberDao)context.getBean("memberDao");
 		
+		Member m =new Member();
+		m.setAccount("hong");
+		m.setPassword("");
+		Member mb=mbDao.loginNormal(m);
+		System.out.println(mb);
+		System.out.println(mb.getId());
+		
+		
+	}
+	@Test
+	public void  testUpdateMember(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");        
+		MemberDao mbDao = (MemberDao)context.getBean("memberDao");
+		Member m =new Member();
+		
+		System.out.println(m.getOrg_id());;
+		m.setId(3);
+		m.setPassword("123");
+		mbDao.updateMember(m);
 		
 	}
 

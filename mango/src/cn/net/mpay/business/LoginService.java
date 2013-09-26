@@ -10,5 +10,7 @@ public interface LoginService {
 	public int regist(Member mb);
 	
 	public boolean checkAccount(String account);
+	
+	public Member loginNormal(String account,String password);
 
 }

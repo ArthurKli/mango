@@ -23,6 +23,8 @@ import javax.sql.rowset.CachedRowSet;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.log4j.Logger;
 
+import cn.net.mpay.bean.Member;
+
 import com.g3net.database.DataBaseSet;
 import com.g3net.database.DbException;
 import com.g3net.tool.ArrayUtils;
@@ -406,15 +408,18 @@ public class SqlUtils {
 	}
 
 	public static void main(String[] args) throws Exception {
-		 exportTables("com.mysql.jdbc.Driver",
-		 "jdbc:mysql://localhost:3306/versiondb", "root",
-		 "root", "versiondb", "e:/okok3", "com.model", "utf-8");
-		// Map map = new HashMap();
-		// Platform p = new Platform();
+//		 exportTables("com.mysql.jdbc.Driver",
+//		 "jdbc:mysql://localhost:3306/versiondb", "root",
+//		 "root", "versiondb", "e:/okok3", "com.model", "utf-8");
+		 Map map = new HashMap();
+		 map.put("org_id", "233");
+		 Member p = new Member();
 
-		// String sql = SqlUtils.generateUpdateSql(Platform.class, p,
-		// "id,platform" ,map);
-		// log.info(sql);
+		 String sql = SqlUtils.generateDeleteSql(Member.class, "integer", null, map);
+		 
+		 
+		 
+		 log.info(sql);
 //		List list = new ArrayList();
 //		String sql = "select * from news where id=? and id2=? and id3=? and time1=?";
 //		list.add(123);

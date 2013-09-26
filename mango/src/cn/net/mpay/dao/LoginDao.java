@@ -9,6 +9,8 @@ public interface LoginDao {
 	
 	public int regist(Member mb);
 	
+	public int registSimple(Member mb);
+	
 	public boolean checkAccount(String account);
 
 }

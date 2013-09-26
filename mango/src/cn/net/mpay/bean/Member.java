@@ -1,12 +1,15 @@
 package cn.net.mpay.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 	/**
 	*此类由MySQLToBean工具自动生成
 	*备注(数据表的comment字段)：无备注信息
 	*@author Kai
 	*@since 2013-09-20 15:45:47
 	*/
-
+    @Entity
 	public class Member{
 	private int id;
 	private int org_id;
@@ -54,6 +57,7 @@ package cn.net.mpay.bean;
 	private int lady_zodiac;//择偶条件:生肖
 	private String lady_note;//择偶条件:备注
 	private int grade;//评分
+	@Id
 	public int getId(){
 		return this.id;
 	}
@@ -329,6 +333,32 @@ package cn.net.mpay.bean;
 	}
 	public void setGrade(int grade){
 		this.grade=grade;
+	}
+	@Override
+	public String toString() {
+		return "Member [account=" + account + ", assets=" + assets
+				+ ", blood_type=" + blood_type + ", born_date=" + born_date
+				+ ", career=" + career + ", child_desc=" + child_desc
+				+ ", child_flag=" + child_flag + ", company_type="
+				+ company_type + ", constell=" + constell + ", edu_back="
+				+ edu_back + ", email=" + email + ", faith=" + faith
+				+ ", family_intr=" + family_intr + ", gender=" + gender
+				+ ", grade=" + grade + ", graduate_from=" + graduate_from
+				+ ", hob_interest=" + hob_interest + ", house_flag="
+				+ house_flag + ", id=" + id + ", lady_age=" + lady_age
+				+ ", lady_edu=" + lady_edu + ", lady_note=" + lady_note
+				+ ", lady_region=" + lady_region + ", lady_tall=" + lady_tall
+				+ ", lady_zodiac=" + lady_zodiac + ", love_desc=" + love_desc
+				+ ", marital_hist=" + marital_hist + ", marital_status="
+				+ marital_status + ", member_desc=" + member_desc + ", mobile="
+				+ mobile + ", nation=" + nation + ", nick_name=" + nick_name
+				+ ", org_id=" + org_id + ", original_place=" + original_place
+				+ ", password=" + password + ", professional=" + professional
+				+ ", qq=" + qq + ", regist_date=" + regist_date
+				+ ", resident_place=" + resident_place + ", tall=" + tall
+				+ ", tel_phone=" + tel_phone + ", true_name=" + true_name
+				+ ", wb_num=" + wb_num + ", weight=" + weight + ", wx_num="
+				+ wx_num + ", zodiac=" + zodiac + "]";
 	}
 
 }

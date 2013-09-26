@@ -1,5 +1,7 @@
 package cn.net.mpay.action;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -14,6 +16,7 @@ import cn.net.mpay.util.ActionValidate;
 
 import com.g3net.tool.CTime;
 import com.g3net.tool.MD5;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 @Component("loginAction")
 @Scope("prototype")
@@ -49,6 +52,7 @@ public class LoginAction extends ActionSupport{
 		return SUCCESS;
 	}
 	/**
+	 * 注册
 	 * http://localhost:8080/mango/regist.action?account=hong&password=123&password2=123&email=123@qq.com&mobile=110
 	 * @return
 	 * @throws Exception
@@ -62,19 +66,14 @@ public class LoginAction extends ActionSupport{
 			msg="用户名已存在！";
 			return "error";
 		}
-		
-		
 		Member mb =new Member();
 		mb.setPassword(MD5.MD5generator(password,"utf-8"));
 		mb.setAccount(account);
 		mb.setEmail(email);
 		mb.setMobile(mobile);
-		
-		
 		mb.setRegist_date(CTime.formatWholeDate());
-		
+//		int i =loginService.regist(mb);
 		int i =loginService.regist(mb);
-		
 		log.info("注册信息："+i);
 	
 		if(i!=0){
@@ -82,10 +81,37 @@ public class LoginAction extends ActionSupport{
 			
 		}
 		
-		
 		return SUCCESS;
 	}
 	
+	
+	/**
+	 * 登陆
+	 * http://localhost:8080/mango/loginNormal.action?account=hong&password=123
+	 * @return
+	 * @throws Exception
+	 */
+	public String loginNormal()throws Exception{
+		
+		if(account==null ||password==null){
+			msg="不允许为空！";
+			return "error";
+		}
+		Member mb =loginService.loginNormal(account, password);
+		if(mb==null){
+			msg="用户名或密码错误。";
+			return "error";
+		}
+		Map session = ActionContext.getContext().getSession();
+		session.put("user", mb);
+		
+		log.info("登陆成功：sessionID=="+mb.getId());
+		msg="登陆成功，sessionID="+mb.getId();
+		
+		
+		
+		return SUCCESS;
+	}
 	
 	
 	public String countAll()throws Exception{

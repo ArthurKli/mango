@@ -12,6 +12,10 @@
 			<result name="success">/success.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="loginNormal" class="loginAction" method="loginNormal">
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 		<action name="all" class="loginAction" method="countAll">
 			<result name="success">/index.jsp</result>
 			<result name="error">/error.jsp</result>
@@ -19,6 +23,10 @@
 
 		<action name="login2" class="memberAction" method="login">
 			<result name="chat">/chat.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="editMember" class="memberAction" method="editInfo">
+			<result name="success">/index.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 	</package>
