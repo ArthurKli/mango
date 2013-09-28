@@ -29,6 +29,14 @@
 			<result name="success">/index.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="indexRec" class="memberAction" method="indexRecommend">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="publiMarry" class="publishAction" method="publishMarryInfo">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 	</package>
 
 </struts>

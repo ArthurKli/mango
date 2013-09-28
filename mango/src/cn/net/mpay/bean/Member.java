@@ -1,7 +1,10 @@
 package cn.net.mpay.bean;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 	/**
 	*此类由MySQLToBean工具自动生成
@@ -57,9 +60,15 @@ import javax.persistence.Id;
 	private int lady_zodiac;//择偶条件:生肖
 	private String lady_note;//择偶条件:备注
 	private int grade;//评分
+	
+	private List<Marry> marries;
 	@Id
 	public int getId(){
 		return this.id;
+	}
+	@Transient
+	public List<Marry> getMarries() {
+		return marries;
 	}
 	public void setId(int id){
 		this.id=id;
@@ -359,6 +368,10 @@ import javax.persistence.Id;
 				+ ", tel_phone=" + tel_phone + ", true_name=" + true_name
 				+ ", wb_num=" + wb_num + ", weight=" + weight + ", wx_num="
 				+ wx_num + ", zodiac=" + zodiac + "]";
+	}
+
+	public void setMarries(List<Marry> marries) {
+		this.marries = marries;
 	}
 
 }

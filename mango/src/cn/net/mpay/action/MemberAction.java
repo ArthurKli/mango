@@ -1,22 +1,20 @@
 package cn.net.mpay.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import sun.applet.resources.MsgAppletViewer;
-
 import cn.net.mpay.bean.Member;
-import cn.net.mpay.bean.User;
-import cn.net.mpay.business.LoginService;
 import cn.net.mpay.business.MemberService;
-import cn.net.mpay.dao.MbDao;
 
 import com.g3net.tool.MD5;
 import com.opensymphony.xwork2.ActionContext;
@@ -71,6 +69,8 @@ public class MemberAction extends ActionSupport{
 	private String lady_note;//择偶条件:备注
 	private Integer grade;//评分
 	
+	private Integer pageNum; //页码
+	
 	private String msg;
 	
 	private final Log log = LogFactory.getLog(getClass());
@@ -111,6 +111,18 @@ public class MemberAction extends ActionSupport{
 		}
 		msg ="更新失败";
 		return "error";
+	}
+	/**
+	 * 首页红娘推荐
+	 * http://localhost:8080/mango/indexRec.action?pageNum=2
+	 */
+	public  String indexRecommend () throws Exception{
+		HttpServletRequest request = ServletActionContext.getRequest();
+		List<Member> members =memberService.getIndexMembers(pageNum);
+
+		request.setAttribute("size", members.size());
+		
+		return SUCCESS;	
 	}
 	
 	public void getRequestParam(Map<String, Object> params){
@@ -544,6 +556,12 @@ public class MemberAction extends ActionSupport{
 
 	public void setGrade(Integer grade) {
 		this.grade = grade;
+	}
+	public Integer getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
 	}
 
 

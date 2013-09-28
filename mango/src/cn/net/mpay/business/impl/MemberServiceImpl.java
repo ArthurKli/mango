@@ -1,6 +1,7 @@
 package cn.net.mpay.business.impl;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import cn.net.mpay.bean.Member;
 import cn.net.mpay.business.MemberService;
 import cn.net.mpay.dao.MbDao;
 
@@ -39,6 +41,11 @@ public class MemberServiceImpl implements MemberService {
 
 		// TODO Auto-generated method stub
 		return mbDao.editUserInfo(sql.toString(), args);
+	}
+
+	public List<Member> getIndexMembers(int pageNum) {
+		// TODO Auto-generated method stub
+		return mbDao.getIndexMembers(pageNum);
 	}
 
 }

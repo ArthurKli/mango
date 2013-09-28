@@ -17,7 +17,7 @@ public class TestLoginDao {
 		Member m =new Member();
 		m.setAccount("abcx");
 		m.setPassword("3466ggg");
-		m.setOrg_id(9);
+		m.setOrg_id(13);
 		lgDao.registSimple(m);
 		
 	}

@@ -1,5 +1,7 @@
 package cn.net.mpay.dao.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -8,6 +10,7 @@ import cn.net.mpay.bean.Member;
 import cn.net.mpay.dao.LoginDao;
 import cn.net.mpay.dao.MbDao;
 import cn.net.mpay.mdao.MemberDao;
+import cn.net.mpay.util.Constants;
 
 public class TestMbDao {
 	
@@ -21,8 +24,18 @@ public class TestMbDao {
 		m.setOrg_id(9);
 		m.setId(2);
 //		mbDao.editUserInfo(m);
+	}
+	
+	@Test
+	public void testGetIndexMembers(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");        
+		MbDao mbDao = (MbDao)context.getBean("mbDao");
+		List<Member> mbList =mbDao.getIndexMembers(1);
+		System.out.println(mbList.size());
 		
 		
+		
+//		mbDao.editUserInfo(m);
 	}
 
 }

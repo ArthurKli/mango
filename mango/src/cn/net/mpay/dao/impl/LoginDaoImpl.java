@@ -2,6 +2,8 @@ package cn.net.mpay.dao.impl;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.expressme.simplejdbc.Db;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
@@ -19,7 +21,7 @@ public class LoginDaoImpl implements LoginDao {
 	@Resource
 	private Db simpleJdbc;
 	
-	
+	private final Log log = LogFactory.getLog(getClass());
 
 	public int findAll() {
 		// TODO Auto-generated method stub
