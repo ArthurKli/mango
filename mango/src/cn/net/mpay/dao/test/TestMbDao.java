@@ -37,5 +37,23 @@ public class TestMbDao {
 		
 //		mbDao.editUserInfo(m);
 	}
+	
+	@Test 
+	public void searchMembers(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");        
+		MbDao mbDao = (MbDao)context.getBean("mbDao");
+		List<Member> mbList =mbDao.searchMembers(" and qq=?", new Object[]{"12345"},1);
+		System.out.println(mbList.size());
+		
+	}
+	
+	@Test 
+	public void testQueryMemberById(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");        
+		MbDao mbDao = (MbDao)context.getBean("mbDao");
+		
+		Member mb =mbDao.queryMemberById(2);
+		System.out.println(mb.toString());
+	}
 
 }

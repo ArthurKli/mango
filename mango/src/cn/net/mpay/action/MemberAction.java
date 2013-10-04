@@ -24,6 +24,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class MemberAction extends ActionSupport{	 
 	@Resource
 	private MemberService memberService;
+	private Integer id;
 	private Integer org_id;
 	private String account;//登陆账号
 	private String password;
@@ -69,7 +70,11 @@ public class MemberAction extends ActionSupport{
 	private String lady_note;//择偶条件:备注
 	private Integer grade;//评分
 	
-	private Integer pageNum; //页码
+	private Integer pageNum=1; //页码
+	
+	private String sortName; //排序字段
+	private Integer sortType=0; //正反序
+	
 	
 	private String msg;
 	
@@ -110,6 +115,44 @@ public class MemberAction extends ActionSupport{
 			return SUCCESS;	
 		}
 		msg ="更新失败";
+		return "error";
+	}
+	/**
+	 * 搜索接口
+	 * http://localhost:8080/mango/searchMbs.action?
+	 * account=felix&email=999@126.com&qq=5667788&tall=170&sortType=1
+	 * @return
+	 * @throws Exception
+	 */
+	public String searchMembers()throws Exception{
+		Map<String, Object> params=new HashMap<String, Object>();
+		this.getRequestParam(params);
+		params.put("sortName",sortName);
+		params.put("sortType",sortType);
+		params.put("pageNum",pageNum);
+		
+		List<Member> members=memberService.searchMembers(params);
+		if (members!=null) {
+			msg ="成功:"+members.size();
+			return SUCCESS;	
+		}
+		msg ="失败";
+		return "error";
+	}
+	/**
+	 * 查询会员信息
+	 * http://localhost:8080/mango/queryMb.action?id=3
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public String queryMemberById()throws Exception{
+		Member member=memberService.queryMemberById(id);
+		if (member!=null) {
+			msg ="成功:"+member.toString();
+			return SUCCESS;	
+		}
+		msg ="失败";
 		return "error";
 	}
 	/**
@@ -562,6 +605,24 @@ public class MemberAction extends ActionSupport{
 	}
 	public void setPageNum(Integer pageNum) {
 		this.pageNum = pageNum;
+	}
+	public String getSortName() {
+		return sortName;
+	}
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
+	}
+	public Integer getSortType() {
+		return sortType;
+	}
+	public void setSortType(Integer sortType) {
+		this.sortType = sortType;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 

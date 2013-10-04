@@ -29,11 +29,26 @@
 			<result name="success">/index.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="searchMbs" class="memberAction" method="searchMembers">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
 		<action name="indexRec" class="memberAction" method="indexRecommend">
 			<result name="success">/index.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="queryMb" class="memberAction" method="queryMemberById">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- publishAction -->
 		<action name="publiMarry" class="publishAction" method="publishMarryInfo">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- RecommendAction -->
+			<action name="addRecomm" class="recommendAction" method="addRecommend">
 			<result name="success">/index.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>

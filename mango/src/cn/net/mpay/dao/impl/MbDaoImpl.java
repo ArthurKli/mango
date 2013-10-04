@@ -25,10 +25,7 @@ public class MbDaoImpl implements MbDao {
 	public int editUserInfo(String sql,Object[] args) {
 		StringBuffer sb=new StringBuffer("UPDATE member set ");
 		sb.append(sql);
-		
 		log.info("[args]:"+args.length+" [SQL]:"+sb.toString());
-		
-		
 		try {
 			return jdbcTemplate.update(sb.toString(),args);
 		} catch (Exception e) {
@@ -54,6 +51,32 @@ public class MbDaoImpl implements MbDao {
 		try {
 			return simpleJdbc.queryForLimitedList(sql, start, pageSize);
 		} catch (Exception e) {
+			log.info("[DB error]:"+e.getMessage());
+		}
+		return null;
+	}
+	public List<Member> searchMembers(String sql, Object[] args ,int pageNum) {
+		StringBuffer sb=new StringBuffer("select * from Member where 0=0 ");
+		sb.append(sql);
+		int pageSize =10;
+		int start = (pageNum-1)*pageSize;
+		log.info("[args]:"+args.length+" [SQL]:"+sb.toString());
+		try {
+			return simpleJdbc.queryForLimitedList(sb.toString(),start, pageSize, args);
+//			return jdbcTemplate.queryForList(sb.toString(),args,Member.class);
+		} catch (Exception e) {
+			log.info("[DB error]:"+e.getMessage());
+		}
+		return null;
+	}
+	public Member queryMemberById(int id) {
+		// TODO Auto-generated method stub
+		
+		try {
+			return simpleJdbc.getById(Member.class, id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			log.info("[DB error]:"+e.getMessage());
 		}
 		return null;

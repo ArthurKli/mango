@@ -1,18 +1,23 @@
 package cn.net.mpay.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 	/**
 	*此类由MySQLToBean工具自动生成
 	*备注(数据表的comment字段)：无备注信息
 	*@author Kai 
 	*@since 2013-09-20 17:22:17
 	*/
-
+    @Entity
 	public class Recommend{
+    
 	private int re_id;
 	private int marry_id;
 	private int sell_mb_id;//推荐人id（商家会员）
 	private int sell_org_id;//推荐机构id（商家）
 	private String time;//推荐时间
+	@Id
 	public int getRe_id(){
 		return this.re_id;
 	}

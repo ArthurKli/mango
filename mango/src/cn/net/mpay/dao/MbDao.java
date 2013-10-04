@@ -9,7 +9,11 @@ public interface MbDao {
 	
 	public int editUserInfo(String sql,Object[] objs);
 	
+	public List<Member> searchMembers(String sql,Object[] objs,int pageNum);
+	
 	public List<Member> getIndexMembers(int pageNum);
+	
+	public Member queryMemberById(int id);
 
 
 }

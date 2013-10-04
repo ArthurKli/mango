@@ -1,16 +1,21 @@
 package cn.net.mpay.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 	/**
 	*此类由MySQLToBean工具自动生成
 	*备注(数据表的comment字段)：无备注信息
 	*@author Kai 
 	*@since 2013-09-20 17:22:17
 	*/
-
+    @Entity
 	public class Dating{
 	private int d_id;
 	private int re_id;
 	private int status;//1申请约会2确认约会（冻结部分资金）3完成约会4付款5投诉
+	private String time;
+	@Id
 	public int getD_id(){
 		return this.d_id;
 	}
@@ -28,6 +33,12 @@ package cn.net.mpay.bean;
 	}
 	public void setStatus(int status){
 		this.status=status;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 
 }
