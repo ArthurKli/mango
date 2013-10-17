@@ -40,7 +40,7 @@ public class PublishAction extends ActionSupport{
 	
 	/**
 	 * 发布征婚
-	 * http://localhost:8080/mango/publiMarry.action?org_id=2&title=%E6%88%91%E8%A6%81%E4%B8%80%E4%B8%AA%E7%99%BD%E5%AF%8C%E7%BE%8E&content=%E6%88%91%E6%98%AF%E9%AB%98%E5%AF%8C%E5%B8%85
+	 * http://localhost:8080/mango/publiMarry.pa?org_id=2&title=%E6%88%91%E8%A6%81%E4%B8%80%E4%B8%AA%E7%99%BD%E5%AF%8C%E7%BE%8E&content=%E6%88%91%E6%98%AF%E9%AB%98%E5%AF%8C%E5%B8%85
 	 * @return
 	 * @throws Exception
 	 */

@@ -10,7 +10,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-attrs.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/bonecp-0.6.4.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0-0.9.1.2.jar" sourcepath="C:/Users/Administrator/.m2/repository/c3p0/c3p0/0.9.1.2/c3p0-0.9.1.2-sources.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/carol.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/cglib-2.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ckeditor-java-core-3.5.3.jar"/>

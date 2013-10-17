@@ -1,5 +1,7 @@
 package cn.net.mpay.mdao.test;
 
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -26,16 +28,17 @@ public class TestMemberDao {
 		System.out.println("成功否："+i);
 	}
 	@Test
-	public void testLoginNormal(){
+	public void testLoginNormal() throws UnsupportedEncodingException{
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");        
 		MemberDao mbDao = (MemberDao)context.getBean("memberDao");
 		
 		Member m =new Member();
-		m.setAccount("hong");
-		m.setPassword("");
+		m.setAccount("r36568ss78");
+		m.setPassword("202cb962ac59075b964b07152d234b70");
 		Member mb=mbDao.loginNormal(m);
 		System.out.println(mb);
-		System.out.println(mb.getId());
+		String img =new String(mb.getAvatar(),"UTF-8");
+		System.out.println(img);
 		
 		
 	}

@@ -14,6 +14,10 @@ public interface MbDao {
 	public List<Member> getIndexMembers(int pageNum);
 	
 	public Member queryMemberById(int id);
+	
+	public int setMbAvatar(int id,byte[] img);
+	
+	public String getAvatarImage(int id);
 
 
 }

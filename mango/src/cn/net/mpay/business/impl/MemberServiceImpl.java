@@ -92,4 +92,9 @@ public class MemberServiceImpl implements MemberService {
 		return mbDao.queryMemberById(id);
 	}
 
+	public String getAvatarImage(int id) {
+		// TODO Auto-generated method stub
+		return mbDao.getAvatarImage(id);
+	}
+
 }

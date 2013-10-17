@@ -16,4 +16,6 @@ public interface MemberService {
 	public List<Member> searchMembers(Map<String, Object> params);
 	
 	public Member queryMemberById(int id);
+	
+	public String getAvatarImage(int id);
 }

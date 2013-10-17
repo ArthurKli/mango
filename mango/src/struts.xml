@@ -4,17 +4,21 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.action.extension" value="pa" />
+	
 	<package name="Manager" extends="struts-default">
 
 
 		<!-- 登录 -->
 		<action name="regist" class="loginAction" method="regist">
-			<result name="success">/success.jsp</result>
+			<result name="login">/login.jsp</result>
 			<result name="error">/error.jsp</result>
+			
 		</action>
 		<action name="loginNormal" class="loginAction" method="loginNormal">
-			<result name="success">/success.jsp</result>
+			<result name="index">/index.jsp</result>
 			<result name="error">/error.jsp</result>
+			<result name="success">/success.jsp</result>
 		</action>
 		<action name="all" class="loginAction" method="countAll">
 			<result name="success">/index.jsp</result>
@@ -26,7 +30,7 @@
 			<result name="error">/error.jsp</result>
 		</action>
 		<action name="editMember" class="memberAction" method="editInfo">
-			<result name="success">/index.jsp</result>
+			<result name="datum">/datum.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		<action name="searchMbs" class="memberAction" method="searchMembers">
@@ -51,6 +55,20 @@
 			<action name="addRecomm" class="recommendAction" method="addRecommend">
 			<result name="success">/index.jsp</result>
 			<result name="error">/error.jsp</result>
+		</action>
+		
+				<!-- UploadAction -->
+			<action name="upload" class="uploadAction" method="upload">
+			<interceptor-ref name="fileUpload"/>
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+	
+		<!-- 异步交互的action包 -->
+	<package name="ajax" extends="json-default">
+			<action name="getAvatar" class="imageAction" method="getAvatar">
+			<result name="data" type="json"></result>
 		</action>
 	</package>
 

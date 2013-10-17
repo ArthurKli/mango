@@ -13,6 +13,7 @@ import cn.net.mpay.bean.Member;
 import cn.net.mpay.bean.User;
 import cn.net.mpay.business.LoginService;
 import cn.net.mpay.util.ActionValidate;
+import cn.net.mpay.util.ReturnConst;
 
 import com.g3net.tool.CTime;
 import com.g3net.tool.MD5;
@@ -53,7 +54,7 @@ public class LoginAction extends ActionSupport{
 	}
 	/**
 	 * 注册
-	 * http://localhost:8080/mango/regist.action?account=hong&password=123&password2=123&email=123@qq.com&mobile=110
+	 * http://localhost:8080/mango/regist.pa?account=hong&password=123&password2=123&email=123@qq.com&mobile=110
 	 * @return
 	 * @throws Exception
 	 */
@@ -81,13 +82,13 @@ public class LoginAction extends ActionSupport{
 			
 		}
 		
-		return SUCCESS;
+		return ReturnConst.LOGIN;
 	}
 	
 	
 	/**
 	 * 登陆
-	 * http://localhost:8080/mango/loginNormal.action?account=hong&password=123
+	 * http://localhost:8080/mango/loginNormal.pa?account=r36568ss78&password=123
 	 * @return
 	 * @throws Exception
 	 */

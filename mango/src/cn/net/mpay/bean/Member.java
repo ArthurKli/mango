@@ -21,6 +21,8 @@ import javax.persistence.Transient;
 	private String email;
 	private String true_name;//真实姓名
 	private String nick_name;//昵称
+	private String card_id;
+	private Integer card_type;
 	private String mobile;
 	private String tel_phone;//固话
 	private String regist_date;//注册时间
@@ -60,6 +62,7 @@ import javax.persistence.Transient;
 	private int lady_zodiac;//择偶条件:生肖
 	private String lady_note;//择偶条件:备注
 	private int grade;//评分
+	private byte[] avatar;
 	
 	private List<Marry> marries;
 	@Id
@@ -373,5 +376,24 @@ import javax.persistence.Transient;
 	public void setMarries(List<Marry> marries) {
 		this.marries = marries;
 	}
+	public byte[] getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
+	}
+	public String getCard_id() {
+		return card_id;
+	}
+	public void setCard_id(String cardId) {
+		card_id = cardId;
+	}
+	public Integer getCard_type() {
+		return card_type;
+	}
+	public void setCard_type(Integer cardType) {
+		card_type = cardType;
+	}
+
 
 }

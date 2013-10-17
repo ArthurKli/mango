@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import cn.net.mpay.bean.Member;
 import cn.net.mpay.business.MemberService;
+import cn.net.mpay.util.ReturnConst;
 
 import com.g3net.tool.MD5;
 import com.opensymphony.xwork2.ActionContext;
@@ -31,6 +32,8 @@ public class MemberAction extends ActionSupport{
 	private String email;
 	private String true_name;//真实姓名
 	private String nick_name;//昵称
+	private String card_id;
+	private Integer card_type;
 	private String mobile;
 	private String tel_phone;//固话
 	private String gender;//性别
@@ -105,21 +108,26 @@ public class MemberAction extends ActionSupport{
 		Map session = ActionContext.getContext().getSession();
 		Map<String, Object> params=new HashMap<String, Object>();
 		Member member =(Member)session.get("user");
+		if (member==null) {
+			member =new Member();
+			member.setId(1);
+		}
 		this.getRequestParam(params);
 		params.put("id",member.getId());
 //		params.put("id",4);
 		
 		int i =memberService.editUserInfo(params);
 		if (i==1) {
-			msg ="成功更新";
-			return SUCCESS;	
+			msg ="信息更新成功！";
+		}else {
+			msg ="更新失败!";
 		}
-		msg ="更新失败";
-		return "error";
+
+		return ReturnConst.DATUM;
 	}
 	/**
 	 * 搜索接口
-	 * http://localhost:8080/mango/searchMbs.action?
+	 * http://localhost:8080/mango/searchMbs.pa?
 	 * account=felix&email=999@126.com&qq=5667788&tall=170&sortType=1
 	 * @return
 	 * @throws Exception
@@ -225,6 +233,16 @@ public class MemberAction extends ActionSupport{
 			params.put("constell", constell);
 			
 		}
+		if(card_id!=null){
+			params.put("card_id", card_id);
+			params.put("card_type", card_type);
+			
+		}
+		if(member_desc!=null){
+			params.put("member_desc", member_desc);
+			
+		}
+
 	}
 
 
@@ -624,6 +642,19 @@ public class MemberAction extends ActionSupport{
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public String getCard_id() {
+		return card_id;
+	}
+	public void setCard_id(String cardId) {
+		card_id = cardId;
+	}
+	public Integer getCard_type() {
+		return card_type;
+	}
+	public void setCard_type(Integer cardType) {
+		card_type = cardType;
+	}
+
 
 
 	
