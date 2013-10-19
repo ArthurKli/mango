@@ -15,7 +15,7 @@ public interface MbDao {
 	
 	public Member queryMemberById(int id);
 	
-	public int setMbAvatar(int id,byte[] img);
+	public int setMbAvatar(int id,String img);
 	
 	public String getAvatarImage(int id);
 

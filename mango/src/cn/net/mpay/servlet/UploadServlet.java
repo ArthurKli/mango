@@ -1,9 +1,12 @@
 package cn.net.mpay.servlet;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.OutputStream;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
@@ -20,6 +22,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import sun.misc.BASE64Decoder;
 import cn.net.mpay.dao.MbDao;
 
 public class UploadServlet extends HttpServlet {
@@ -46,16 +49,28 @@ public class UploadServlet extends HttpServlet {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");        
 		MbDao mbDao = (MbDao)context.getBean("mbDao");
 		String data = "上传成功";
+		String filePath=this.getServletConfig().getServletContext().getRealPath("")+"/avatar/";
+		File f1 = new File(filePath);
+		if (!f1.exists()) {
+			f1.mkdirs();
+		}
 		   String ajaxUpdateResult = "";
 	        try {
 	            List<FileItem> fItems = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);            
 	            for (FileItem item : fItems) {
 	                if (item.isFormField()) {
-	                    ajaxUpdateResult += "Field " + item.getFieldName() + 
-	                    " with value: " + item.getString() + " is successfully read\n\r";
-	                    
-	                    if("sampleFile".equals(item.getFieldName())){
-	                    	mbDao.setMbAvatar(1, item.getString().getBytes());
+	                	if("sampleFile".equals(item.getFieldName())){
+	                    String[] part =item.getString().split(",");
+	                    String imgType =findImageType(part[0]);
+	                    File file = null;
+	                    String name=null;
+	    				do {
+	    					// 生成文件名：
+	    					name = UUID.randomUUID().toString();
+	    					file = new File(filePath + name + imgType);
+	    				} while (file.exists());
+	    				GenerateImage(part[1],filePath + name + imgType);
+	                    mbDao.setMbAvatar(1, name+imgType);
 	                    }
 	                    
 
@@ -73,7 +88,6 @@ public class UploadServlet extends HttpServlet {
 
 	                    System.out.println(Streams.asString(content));
 
-	                    ajaxUpdateResult += "File " + fileName + " is successfully uploaded\n\r";
 
 	                }
 
@@ -83,7 +97,6 @@ public class UploadServlet extends HttpServlet {
 	            log.error("Parsing file upload failed.", e);
 	            data="上传失败！";
 	        }
-	        System.out.println(ajaxUpdateResult);
 	        try {
 	        	response.setCharacterEncoding("UTF-8");
 				response.getWriter().print(data);
@@ -94,5 +107,42 @@ public class UploadServlet extends HttpServlet {
 		
 	
 	}
+	public String findImageType(String temp){
+		if (temp.contains("image/bmp")) {
+			return ".bmp";
+		}else if (temp.contains("image/gif")) {
+			return ".gif";
+		}else if (temp.contains("image/png")) {
+			return ".png";
+		}else if (temp.contains("image/bmp")) {
+			return ".bmp";
+		}else if (temp.contains("image/jpeg")) {
+			return ".jpg";
+		}else {
+			return ".jpg";
+		}
+	}
+	public static boolean GenerateImage(String imgStr, String imgFilePath) {// 对字节数组字符串进行Base64解码并生成图片
+        if (imgStr == null) // 图像数据为空
+            return false;
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            // Base64解码
+            byte[] bytes = decoder.decodeBuffer(imgStr);
+            for (int i = 0; i < bytes.length; ++i) {
+                if (bytes[i] < 0) {// 调整异常数据
+                    bytes[i] += 256;
+                }
+            }
+            // 生成jpeg图片
+            OutputStream out = new FileOutputStream(imgFilePath);
+            out.write(bytes);
+            out.flush();
+            out.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }

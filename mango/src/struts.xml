@@ -39,7 +39,7 @@
 		</action>
 		
 		<action name="indexRec" class="memberAction" method="indexRecommend">
-			<result name="success">/index.jsp</result>
+			<result name="love">/love.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		<action name="queryMb" class="memberAction" method="queryMemberById">

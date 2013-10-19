@@ -1,7 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="cn.net.mpay.util.Constants"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String avatarPath=Constants.loadConfig("AvatarImagePath");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,7 +53,7 @@ $(document).ready(function(){
             	<a href="index.html"><div class="logo fl"></div></a>
                 <div class="fr">
                 	<div class="top_nav white tr">
-                    	<span>欢迎来名仕之约！请<a href="login.html">登录</a> / <a href="register.html">免费注册</a></span>    
+                    	<span>欢迎来名仕之约！请<a href="login.jsp">登录</a> / <a href="register.jsp">免费注册</a></span>    
                         <span><a href="#">个人中心</a></span>  
                         <span><a href="#">我的约会<strong>0</strong></a></span>  
                         <span><a href="#">待付款<strong>0</strong></a></span>  
@@ -97,7 +99,7 @@ $(document).ready(function(){
                 <li class="line"></li>
                 <li><a href="marriage.html">征婚大厅</a></li>
                 <li class="line"></li>
-                <li><a href="lover.html">红娘推荐</a></li>
+                <li><a href="indexRec.pa?pageNum=1">红娘推荐</a></li>
                 <li class="line"></li>
                 <li><a href="#">名仕服务</a></li>
                 <li class="line"></li>
@@ -165,9 +167,9 @@ $(function(){
             </div>
             <div class="quick_reg fr">
             	<div class="register">
-                	<input name="" type="button" class="quick_reg_btn" value="快速注册" onclick="location.href='register.html'" />
+                	<input name="" type="button" class="quick_reg_btn" value="快速注册" onclick="location.href='register.jsp'" />
                     <center>
-                		我是会员，立刻<a href="login.html">登录</a>
+                		我是会员，立刻<a href="login.jsp">登录</a>
                 	</center>
                 </div>
             	

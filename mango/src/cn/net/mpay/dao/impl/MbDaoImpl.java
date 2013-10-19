@@ -85,7 +85,7 @@ public class MbDaoImpl implements MbDao {
 		}
 		return null;
 	}
-	public int setMbAvatar(int id, byte[] img) {
+	public int setMbAvatar(int id, String img) {
 		String sql="UPDATE member SET avatar=? WHERE id=?";
 		
 		try {
@@ -96,20 +96,14 @@ public class MbDaoImpl implements MbDao {
 		return 0;
 	}
 	public String getAvatarImage(int id) {
-		final byte[] bytes;
-        final float[] floats;
 		String sql="SELECT avatar FROM member WHERE id = ?";
-		Blob blob=jdbcTemplate.queryForObject(sql,new Object[] {id},Blob.class);
-		if (blob==null) {
-			return null;
-		}
         try {
-			bytes = blob.getBytes(1, (int) blob.length());
-			log.info("byte size:"+bytes.length);
-			String data=new String(bytes,"utf-8");
+//			bytes = blob.getBytes(1, (int) blob.length());
+//			log.info("byte size:"+bytes.length);
+//			String data=new String(bytes,"utf-8");
 //			BASE64Decoder decoder =new BASE64Decoder();
 //			return decoder.decodeBuffer(data.split(",")[1]);
-			return data;
+			return jdbcTemplate.queryForObject(sql,new Object[] {id},java.lang.String.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

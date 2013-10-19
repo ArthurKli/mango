@@ -111,7 +111,7 @@ public class LoginAction extends ActionSupport{
 		
 		
 		
-		return SUCCESS;
+		return ReturnConst.INDEX;
 	}
 	
 	

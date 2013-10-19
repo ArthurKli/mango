@@ -37,8 +37,8 @@ public class TestMemberDao {
 		m.setPassword("202cb962ac59075b964b07152d234b70");
 		Member mb=mbDao.loginNormal(m);
 		System.out.println(mb);
-		String img =new String(mb.getAvatar(),"UTF-8");
-		System.out.println(img);
+//		String img =new String(mb.getAvatar(),"UTF-8");
+		System.out.println(mb.getAvatar());
 		
 		
 	}

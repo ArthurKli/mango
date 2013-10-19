@@ -1,8 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="cn.net.mpay.util.Constants"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String avatarPath=Constants.getString("AvatarImagePath");
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -117,16 +119,16 @@ a:hover
 
 </style>
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="js/ImageCropper.js"></script>
+<%--<script type="text/javascript" src="js/ImageCropper.js"></script>
 <script type="text/javascript" src="js/diyImage.js"></script>
-<script type="text/javascript">
+--%><script type="text/javascript">
 
 
 
 </script>
 	</head>
 
-	<body class="center" onload="init();">
+	<body class="center">
 
 		<div class="top">
 			<div class="head">

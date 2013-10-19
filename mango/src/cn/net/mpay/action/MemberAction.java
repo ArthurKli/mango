@@ -32,6 +32,7 @@ public class MemberAction extends ActionSupport{
 	private String email;
 	private String true_name;//真实姓名
 	private String nick_name;//昵称
+	private Integer age;
 	private String card_id;
 	private Integer card_type;
 	private String mobile;
@@ -165,15 +166,15 @@ public class MemberAction extends ActionSupport{
 	}
 	/**
 	 * 首页红娘推荐
-	 * http://localhost:8080/mango/indexRec.action?pageNum=2
+	 * http://localhost:8080/mango/indexRec.pa?pageNum=2
 	 */
 	public  String indexRecommend () throws Exception{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		List<Member> members =memberService.getIndexMembers(pageNum);
 
-		request.setAttribute("size", members.size());
+		request.setAttribute("members", members);
 		
-		return SUCCESS;	
+		return ReturnConst.LOVE;	
 	}
 	
 	public void getRequestParam(Map<String, Object> params){
@@ -240,6 +241,10 @@ public class MemberAction extends ActionSupport{
 		}
 		if(member_desc!=null){
 			params.put("member_desc", member_desc);
+			
+		}
+		if(age!=null){
+			params.put("age", age);
 			
 		}
 
@@ -653,6 +658,12 @@ public class MemberAction extends ActionSupport{
 	}
 	public void setCard_type(Integer cardType) {
 		card_type = cardType;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 
 
