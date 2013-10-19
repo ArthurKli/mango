@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
@@ -24,46 +26,116 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import sun.misc.BASE64Decoder;
 import cn.net.mpay.dao.MbDao;
+import cn.net.mpay.util.ReturnConst;
 
 public class UploadServlet extends HttpServlet {
 
 	private final Log log = LogFactory.getLog(getClass());
+	
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		doPost(request, response);
 	}
 
-	/**
-	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
-	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			 {
+	    String BASEPATH =this.getServletConfig().getServletContext().getRealPath("");
+		String uploadType=request.getParameter("type");
+
+		
+		if ("photo".equals(uploadType)) {
+			String mid=request.getParameter("id");
+			String savePath = BASEPATH+"/photo/"+mid+"/";
+
+			File f1 = new File(savePath);
+			if (!f1.exists()) {
+				f1.mkdirs();
+			}
+			int fLen=f1.listFiles().length;
+			log.info("文件总数："+fLen);
+			if (fLen>=10) {
+				log.error("The total number of limit exceeded");
+		        try {
+		        	response.setCharacterEncoding("UTF-8");
+					response.getWriter().print(ReturnConst.ERROR);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return ;
+			}
+			DiskFileItemFactory fac = new DiskFileItemFactory();
+			ServletFileUpload upload = new ServletFileUpload(fac);
+			upload.setHeaderEncoding("utf-8");
+			List fileList = null;
+			try {
+				fileList = upload.parseRequest(request);
+			} catch (FileUploadException ex) {
+				return;
+			}
+			Iterator<FileItem> it = fileList.iterator();
+			String name = "";   //图片名称
+			String imgType = ""; //图片后缀
+			while (it.hasNext()) {
+				FileItem item = it.next();
+				if (!item.isFormField()) {
+					name = item.getName();
+					long size = item.getSize();
+					String type = item.getContentType();
+					log.info(size + " " + type);
+					if (name == null || name.trim().equals("")) {
+						continue;
+					}
+					if (name.lastIndexOf(".") >= 0) {
+						imgType = name.substring(name.lastIndexOf("."));
+					}
+					File file = null;
+					int i =0;
+					do {
+						if (i>9) { //个人相册默认只能存十张相片
+							i=0;
+						}
+						i++;
+						file = new File(savePath + i + imgType);
+						
+					} while (file.exists());
+					File saveFile = new File(savePath + i + imgType);
+					log.info("图："+i + imgType);
+					try {
+						item.write(saveFile);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			try {
+				response.getWriter().print(ReturnConst.SUCCESS);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");        
 		MbDao mbDao = (MbDao)context.getBean("mbDao");
 		String data = "上传成功";
-		String filePath=this.getServletConfig().getServletContext().getRealPath("")+"/avatar/";
+		String filePath=BASEPATH+"/avatar/";
 		File f1 = new File(filePath);
 		if (!f1.exists()) {
 			f1.mkdirs();
 		}
 		   String ajaxUpdateResult = "";
 	        try {
-	            List<FileItem> fItems = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);            
+	            List<FileItem> fItems = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);  
+	    		String name = "";   //图片名称
+	    		String imgType = ""; //图片后缀
 	            for (FileItem item : fItems) {
 	                if (item.isFormField()) {
 	                	if("sampleFile".equals(item.getFieldName())){
 	                    String[] part =item.getString().split(",");
-	                    String imgType =findImageType(part[0]);
+	                    imgType =findImageType(part[0]);
 	                    File file = null;
-	                    String name=null;
 	    				do {
 	    					// 生成文件名：
 	    					name = UUID.randomUUID().toString();
@@ -72,27 +144,13 @@ public class UploadServlet extends HttpServlet {
 	    				GenerateImage(part[1],filePath + name + imgType);
 	                    mbDao.setMbAvatar(1, name+imgType);
 	                    }
-	                    
-
 	                } else {
-
 	                    String fileName = item.getName();
-
 	                    InputStream content = item.getInputStream();
-
 	                    response.setContentType("text/plain");
-
 	                    response.setCharacterEncoding("UTF-8");
-
-	                    // Do whatever with the content InputStream.
-
-	                    System.out.println(Streams.asString(content));
-
-
 	                }
-
 	            }
-
 	        } catch (Exception e) {
 	            log.error("Parsing file upload failed.", e);
 	            data="上传失败！";
@@ -103,8 +161,7 @@ public class UploadServlet extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
-		
+		}
 	
 	}
 	public String findImageType(String temp){

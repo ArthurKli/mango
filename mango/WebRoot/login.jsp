@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="register_tj">
 						<input name="" type="submit" value="登 录" />
 						&nbsp;&nbsp;还不是会员？
-						<a href="register.html" class="red">免费注册</a>
+						<a href="register.jsp" class="red">免费注册</a>
 					</div>
 				</div>
 			</div>
@@ -72,29 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="mb30">
 			&nbsp;
 		</div>
-		<div class="footer">
-			<div class="w980">
-				<div class="fl">
-					<div>
-						<a href="#">关于我们</a>
-						<a href="#">帮助中心</a>
-						<a href="#">诚聘英才</a>
-						<a href="#"> 联系我们</a>
-						<a href="#">商务合作</a>
-						<a href="#">版权说明</a>
-					</div>
-					<div>
-						Copyright © 2011-2015 520cecs.com All RightReserved 粤ICP备12009586号
-					</div>
-				</div>
-				<div class="subfooter fr">
-					<a href="#" class="sub1"></a>
-					<a href="#" class="sub2"></a>
-					<a href="#" class="sub3"></a>
-					<a href="#" class="sub4"></a>
-				</div>
-			</div>
-		</div>
+		<%@include file="foot.jsp" %>
 
 	</body>
 </html>

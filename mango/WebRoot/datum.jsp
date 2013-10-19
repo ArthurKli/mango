@@ -1,18 +1,10 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="cn.net.mpay.util.Constants"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String avatarPath=Constants.getString("AvatarImagePath");
-%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@include file="head.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>名仕之约</title>
-
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
 		
 <style>
 body
@@ -129,111 +121,6 @@ a:hover
 	</head>
 
 	<body class="center">
-
-		<div class="top">
-			<div class="head">
-				<div class="w980">
-					<a href="index.html"><div class="logo fl"></div>
-					</a>
-					<div class="fr">
-						<div class="top_nav white tr">
-							<span>欢迎来名仕之约！请<a href="login.html">登录</a> / <a
-								href="register.html">免费注册</a>
-							</span>
-							<span><a href="#">个人中心</a>
-							</span>
-							<span><a href="#">我的约会<strong>0</strong>
-							</a>
-							</span>
-							<span><a href="#">待付款<strong>0</strong>
-							</a>
-							</span>
-							<span><a href="#">投诉<strong>0</strong>
-							</a>
-							</span>
-							<span><a href="#">消息<strong>0</strong>
-							</a>
-							</span>
-							<span>服务热线：<strong>4008-652-520</strong>
-							</span>
-						</div>
-						<div class="top_search">
-							<div class="condition fl">
-								我要找
-								<select name="">
-									<option>
-										名仕
-									</option>
-									<option>
-										女士
-									</option>
-								</select>
-								<span> 年龄<select name="">
-										<option>
-											18
-										</option>
-									</select> 至 <select name="">
-										<option>
-											20
-										</option>
-									</select> </span>
-								<span> 地区 <select name="">
-										<option>
-											广东
-										</option>
-									</select> <select name="">
-										<option>
-											广州
-										</option>
-										<option>
-											西藏自治区
-										</option>
-									</select> </span>
-							</div>
-							<div class="fl">
-								<a href="#"><span class="top_search_btn"></span>
-								</a>
-							</div>
-							<div class="fl">
-								<a href="#"><span class="top_search_btn1"></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="nav">
-				<ul class="w980">
-					<li class="hover">
-						<a href="index.html">首页</a>
-					</li>
-					<li class="line"></li>
-					<li>
-						<a href="center.html">我的名仕</a>
-					</li>
-					<li class="line"></li>
-					<li>
-						<a href="marriage.html">征婚大厅</a>
-					</li>
-					<li class="line"></li>
-					<li>
-						<a href="lover.html">红娘推荐</a>
-					</li>
-					<li class="line"></li>
-					<li>
-						<a href="#">名仕服务</a>
-					</li>
-					<li class="line"></li>
-					<li>
-						<a href="active.html">活动介绍</a>
-					</li>
-					<li class="line"></li>
-					<li>
-						<a href="www.mingshizhiyue.com">关于我们</a>
-					</li>
-				</ul>
-			</div>
-		</div>
 		<div class=" w980">
 			<div class="wrapper">
 				<div class="center_menu" id="left">
@@ -521,29 +408,7 @@ a:hover
 		</div>
 
 		<div class="clear"></div>
-		<div class="footer">
-			<div class="w980">
-				<div class="fl">
-					<div>
-						<a href="#">关于我们</a>
-						<a href="#">帮助中心</a>
-						<a href="#">诚聘英才</a>
-						<a href="#"> 联系我们</a>
-						<a href="#">商务合作</a>
-						<a href="#">版权说明</a>
-					</div>
-					<div>
-						Copyright © 2011-2015 520cecs.com All RightReserved 粤ICP备12009586号
-					</div>
-				</div>
-				<div class="subfooter fr">
-					<a href="#" class="sub1"></a>
-					<a href="#" class="sub2"></a>
-					<a href="#" class="sub3"></a>
-					<a href="#" class="sub4"></a>
-				</div>
-			</div>
-		</div>
+		
 		<script language="javascript">
 var l=document.getElementById("left").scrollHeight;
 var n=document.getElementById("right").scrollHeight;
@@ -567,6 +432,7 @@ $(function(){
 		});
 	});
 </script>
+<%@include file="foot.jsp" %>
 	</body>
 </html>
 

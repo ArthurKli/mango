@@ -42,9 +42,9 @@ h1,h2,h3,h4,h5,h6{font-family:微软雅黑}
 .top_search{ margin-top:20px; margin-left:40px;}
 .top_search_btn{ background:url(../images/top_search.gif) no-repeat; width:78px; height:33px; display:block;}
 .top_search_btn1{ background:url(../images/top_search_con.gif) no-repeat; width:107px; height:33px; display:block; margin-left:5px;}
-.condition{ background:#ea1a41; height:33px; width:500px; height:33px; line-height:33px; color:#fff; padding:0 5px; }
-.condition span{ padding:0 8px;}
-.condition select{ margin:0 5px;}
+.condition{ background:#ea1a41; height:33px; width:660px; height:33px; line-height:33px; color:#fff; padding:0 5px; }
+.condition span{ padding:0 2px;}
+.condition select{ margin:0 2px;}
 
 .nav{ height:30px; background:#8f0100}
 .nav ul{ height:30px;}

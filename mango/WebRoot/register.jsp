@@ -8,7 +8,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>名仕之约</title>
-
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -72,29 +71,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	  <label for="textfield">&nbsp;</label>验证码不正确
            	  	</div>
                 <div><label for="textfield">&nbsp;</label><input name="" type="checkbox" value="" />已经阅读并同意 用户协议</div>
-                <div class="register_tj"><input name="" type="submit" value="免费注册" />&nbsp;&nbsp;我是会员，立即<a href="login.html" class="red">登录</a> </div>
+                <div class="register_tj"><input name="" type="submit" value="免费注册" />&nbsp;&nbsp;我是会员，立即<a href="login.jsp" class="red">登录</a> </div>
             </div>
       </div>
     </div>
     </form>
     <div class="clear"></div>
     <div class="mb30">&nbsp;</div>
-    <div class="footer">
-    	<div class="w980">
-            <div class="fl">
-                <div>
-                	<a href="#">关于我们</a>   <a href="#">帮助中心</a>   <a href="#">诚聘英才</a>  <a href="#"> 联系我们</a>   <a href="#">商务合作</a>    <a href="#">版权说明</a> 
-                </div>
-                <div>Copyright © 2011-2015 520cecs.com All RightReserved  粤ICP备12009586号</div>
-            </div>
-            <div class="subfooter fr">
-            	<a href="#" class="sub1"></a>
-                <a href="#" class="sub2"></a>
-                <a href="#" class="sub3"></a>
-                <a href="#" class="sub4"></a>
-            </div>
-        </div>
-    </div>
+    <%@include file="foot.jsp" %>
 
 </body>
 </html>
