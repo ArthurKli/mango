@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import com.g3net.tool.MD5;
 
 import cn.net.mpay.bean.Member;
+import cn.net.mpay.bean.Organization;
 import cn.net.mpay.bean.User;
 import cn.net.mpay.business.LoginService;
 import cn.net.mpay.dao.LoginDao;
@@ -42,6 +43,23 @@ public class LoginServiceImpl implements LoginService {
 		mb.setAccount(account);
 		mb.setPassword(MD5.MD5generator(password,"utf-8"));
 		return memDao.loginNormal(mb);
+	}
+
+	public boolean checkOrg(String loginName) {
+		// TODO Auto-generated method stub
+		return loginDao.checkOrg(loginName);
+	}
+
+	public int registOrg(Organization org) {
+		// TODO Auto-generated method stub
+		return loginDao.registOrg(org);
+	}
+
+	public Organization loginOrg(String loginName, String password) {
+		Organization org =new Organization();
+		org.setLogin_name(loginName);
+		org.setPassword(MD5.MD5generator(password,"utf-8"));
+		return memDao.loginOrg(org);
 	}
 
 }

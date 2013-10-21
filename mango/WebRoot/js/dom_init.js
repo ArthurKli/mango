@@ -7,13 +7,14 @@ $(document).ready(function() {
    	});
   	 //页面关闭时销毁session
 	 $(window).unload(function() {
-	      var id = DWRUtil.getValue("userid");      
-	      RemoteTest.removeSession(id);      
+	      var id = DWRUtil.getValue("userid");  
+	      alert(1233);
+	    //  RemoteTest.removeSession(id);      
 		 });
 
-		$('.miniChatDiv').live('click', function() {
-			toggleTheChatTab();
-			});
+//		$('.miniChatDiv').live('click', function() {
+//			toggleTheChatTab();
+//			});
 
 	$("#friends").click(function() {
 		$(this).next().slideToggle('normal');

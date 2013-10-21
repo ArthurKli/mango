@@ -1,7 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="cn.net.mpay.bean.Organization"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+Organization org=(Organization)session.getAttribute("user");
+
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -13,23 +16,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <link rel="stylesheet" type="text/css" href="css/chat.css">
      <style type="text/css">
     </style>
-    <script type="text/javascript" src="dwr/engine.js"></script>
-    <script type="text/javascript" src="dwr/util.js"></script>
-    <script type="text/javascript" src="dwr/interface/RemoteTest.js"></script>
+    <script type="text/javascript" src="<%=basePath%>dwr/engine.js"></script>
+    <script type="text/javascript" src="<%=basePath%>dwr/util.js"></script>
+    <script type="text/javascript" src="<%=basePath%>dwr/interface/RemoteTest.js"></script>
     
-    <script type='text/javascript' src="js/jquery-1.4.4.min.js"></script>
-    <script type='text/javascript' src="js/dom_init.js"></script>
-    <script type='text/javascript' src="js/chat.js"></script>
+    <script type='text/javascript' src="<%=basePath%>js/jquery-1.9.1.min.js"></script>
+    <script type='text/javascript' src="<%=basePath%>js/dom_init.js"></script>
+    <script type='text/javascript' src="<%=basePath%>js/chat.js"></script>
    
       <script type="text/javascript">
+      $(document).ready(function() {
+   	 $(window).load(function() {
+         dwr.engine.setActiveReverseAjax(true);
+         dwr.engine.setNotifyServerOnPageUnload(true);
+         helloTest("<%=org.getOrg_id() %>");
+   	});
+      });
   </script>
   </head>
   
   <body>
-  
-  <input type="text" id="myid" value=""  />
+  <a href="index.jsp" >点击我进入其他页面</a>
+  <input type="text" id="myid" value=""  /><%--
   <input type="button" value="登陆" onclick="helloTest();" />
-   <input type="button" value="获取好友" onclick="getFris();" />
+   --%><input type="button" value="获取好友" onclick="getFris();" />
    <input type="hidden" id="userid" name="userid" value=""  />
 		<div id="footpanel" class="header_demo0">
 			<ul id="mainpanel">

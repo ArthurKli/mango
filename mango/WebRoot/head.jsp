@@ -1,10 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="cn.net.mpay.bean.Organization"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="cn.net.mpay.util.Constants"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String avatarPath=Constants.loadConfig("AvatarImagePath");
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,13 +15,21 @@ String avatarPath=Constants.loadConfig("AvatarImagePath");
 <link href="<%=basePath%>css/style.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>css/uploadifive.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>css/dialog/zebra_dialog.css" rel="stylesheet"  type="text/css" />
-<script type='text/javascript' src="<%=basePath%>/js/jquery-1.7.1.min.js"></script>
+<script type='text/javascript' src="<%=basePath%>/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/jquery.uploadifive.min.js"></script>
 <script type='text/javascript' src="<%=basePath%>/js/zebra_dialog.js"></script> 
 <script type='text/javascript' src="<%=basePath%>/js/jquery.foucs.js" type="text/javascript"></script>
 <script type='text/javascript' src="<%=basePath%>/js/jquery.wookmark.js" type="text/javascript"></script>
 <script type='text/javascript' src="<%=basePath%>/js/area.js" type="text/javascript"></script>
-</head>
+    <script type="text/javascript" src="<%=basePath%>dwr/engine.js"></script>
+    <script type="text/javascript" src="<%=basePath%>dwr/util.js"></script>
+    <script type="text/javascript" src="<%=basePath%>dwr/interface/RemoteTest.js"></script><%--
+        <script type='text/javascript' src="<%=basePath%>js/dom_init.js"></script>
+        --%><script type='text/javascript' src="<%=basePath%>js/chat.js"></script>
+<%--
+
+    
+--%></head>
   
   <body>
   <div class="top">
@@ -29,11 +39,11 @@ String avatarPath=Constants.loadConfig("AvatarImagePath");
                 <div class="fr">
                 	<div class="top_nav white tr">
                     	<span>欢迎来名仕之约！请<a href="login.jsp">登录</a> / <a href="register.jsp">免费注册</a></span>    
-                        <span><a href="#">个人中心</a></span>  
+                        <span><a href="center.jsp">个人中心</a></span>  
                         <span><a href="#">我的约会<strong>0</strong></a></span>  
                         <span><a href="#">待付款<strong>0</strong></a></span>  
                         <span><a href="#">投诉<strong>0</strong></a></span>  
-                        <span><a href="#">消息<strong>0</strong></a></span>    
+                        <span><a href="#">消息<strong id="unread_msg_acc">0</strong></a></span>    
                         <span>服务热线：<strong>4008-652-520</strong></span>  
 					</div>
                     <div class="top_search">
@@ -88,25 +98,31 @@ String avatarPath=Constants.loadConfig("AvatarImagePath");
         </div>
         <div class="nav">
         	<ul class="w980">
-            	<li class="hover"><a href="index.html">首页</a></li>
+            	<li class="hover"><a href="index.jsp">首页</a></li>
                 <li class="line"></li>
-                <li><a href="center.html">我的名仕</a></li>
+                <li><a href="center.jsp">我的名仕</a></li>
                 <li class="line"></li>
-                <li><a href="marriage.html">征婚大厅</a></li>
+                <li><a href="marriage.jsp">征婚大厅</a></li>
                 <li class="line"></li>
                 <li><a href="indexRec.pa?pageNum=1">红娘推荐</a></li>
                 <li class="line"></li>
                 <li><a href="#">名仕服务</a></li>
                 <li class="line"></li>
-                <li><a href="active.html">活动介绍</a></li>
+                <li><a href="active.jsp">活动介绍</a></li>
                 <li class="line"></li>
-                <li><a href="www.mingshizhiyue.com">关于我们</a></li>
+                <li><a href="http://www.mingshizhiyue.com" >关于我们</a></li>
             </ul>
         </div>
     </div>
     <script language="javascript">
 $(function(){
 	_init_area();
+
+	  	 $(window).load(function() {
+	      //  dwr.engine.setActiveReverseAjax(true);
+	      //  dwr.engine.setNotifyServerOnPageUnload(true);
+	  	});
+
 	});
 
 var Gid  = document.getElementById ;
@@ -116,6 +132,8 @@ var showArea = function(){
 							Gid('s_county').value + "</h3>"
 }
 Gid('s_county').setAttribute('onchange','showArea()');
+
+	
 </script>
   </body>
 </html>

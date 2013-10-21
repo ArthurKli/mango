@@ -10,14 +10,14 @@
 
 
 		<!-- 登录 -->
-		<action name="regist" class="loginAction" method="regist">
+		<action name="regist" class="loginAction" method="registOrg">
 			<result name="login">/login.jsp</result>
-			<result name="error">/error.jsp</result>
+			<result name="register">/register.jsp</result>
 			
 		</action>
-		<action name="loginNormal" class="loginAction" method="loginNormal">
+		<action name="loginNormal" class="loginAction" method="loginOrg">
 			<result name="index">/index.jsp</result>
-			<result name="error">/error.jsp</result>
+			<result name="login">/login.jsp</result>
 			<result name="success">/success.jsp</result>
 		</action>
 		<action name="all" class="loginAction" method="countAll">

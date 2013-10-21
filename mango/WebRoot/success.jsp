@@ -4,8 +4,6 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
-Member mb =(Member)session.getAttribute("user");
-String img =new String(mb.getAvatar(),"UTF-8");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -25,8 +23,8 @@ String img =new String(mb.getAvatar(),"UTF-8");
   </head>
   
   <body>
-   ${msg} <br>
+   ${msg} <br><%--
    
    <img alt="" src="<%=img %>">
-  </body>
+  --%></body>
 </html>

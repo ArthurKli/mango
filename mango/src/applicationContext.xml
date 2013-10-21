@@ -59,6 +59,14 @@
 		<property name="password">
 			<value>123</value>
 		</property>
+
+		<!--<property name="user">
+			<value>developer</value>
+		</property>
+		<property name="password">
+			<value>developer</value>
+		</property>
+		-->
 		<property name="minPoolSize">
 			<value>5</value>
 		</property>

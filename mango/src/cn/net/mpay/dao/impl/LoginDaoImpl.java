@@ -11,6 +11,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import cn.net.mpay.bean.Member;
+import cn.net.mpay.bean.Organization;
 import cn.net.mpay.bean.User;
 import cn.net.mpay.dao.LoginDao;
 @Component("loginDao")
@@ -67,6 +68,37 @@ public class LoginDaoImpl implements LoginDao {
 			e.printStackTrace();
 		}
 		return hasExist;
+	}
+
+	public boolean checkOrg(String loginName) {
+		boolean hasExist =false;
+		try {
+			int count = jdbcTemplate.queryForInt("SELECT COUNT(org_id) FROM organization WHERE login_name = ?",new Object[]{loginName});
+		    if(count>0){
+		    	hasExist = true;
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hasExist;
+	}
+
+	public int registOrg(Organization org) {
+		String sql="insert into organization(login_name,password,mailbox,mobile,regist_time) values(?,?,?,?,?)";
+		Object[] args = new Object[] {
+				org.getLogin_name(),
+				org.getPassword(),
+				org.getMailbox(),
+				org.getMobile(),
+				org.getRegist_time()
+				 };
+		try {
+			return jdbcTemplate.update(sql,args);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+		
 	}
 
 }

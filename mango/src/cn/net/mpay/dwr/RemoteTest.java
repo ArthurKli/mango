@@ -32,17 +32,17 @@ public class RemoteTest {
 	private ChatDao cDao;
 	
 	@RemoteMethod
-	public int login() {
-		HttpSession httpSession =WebContextFactory.get().getSession();
-		Integer sid =(Integer) httpSession.getAttribute("uid");
-		log.info("绑定httpsession:"+sid);
+	public int login(int id) {
+//		HttpSession httpSession =WebContextFactory.get().getSession();
+//		Integer sid =(Integer) httpSession.getAttribute("uid");
+		log.info("绑定httpsession:"+id);
 		try {
-			this.setScriptSessionFlag(sid);
+			this.setScriptSessionFlag(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return sid;
+		return id;
 	}
 	@RemoteMethod
 	public String createUUID() {

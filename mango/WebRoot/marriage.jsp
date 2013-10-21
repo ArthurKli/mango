@@ -1,12 +1,11 @@
-<%@ page language="java" import="java.util.*"  pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@include file="head.jsp" %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
- <title>名仕之约</title>
-
-    <style type="text/css">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>名仕之约</title>
+<style type="text/css">
 *{margin:0;padding:0;list-style-type:none;}
 a,img{border:0;}
 body {font-family:"helvetica neue",arial,sans-serif;font-size:12px;color:#211922;}
@@ -38,41 +37,116 @@ var ScrollToTop=ScrollToTop||{
 };
 </script>
 </head>
-<jsp:useBean id="orgs" scope="session" class="cn.net.mpay.bean.Organization"></jsp:useBean>
-<body class="lover"> 
+
+<body class="marriage">
+    
+    
+        <div class="news_banner">
+    	<div class="w980">
+        	<div class="slidebox1">
+                <ul class="slidepic1">
+                    <li><a href="#"><img src="images/top_banner.jpg" ></a></li>
+                    <li><a href="#"><img src="images/top_banner.jpg" ></a></li>
+                    <li><a href="#"><img src="images/top_banner.jpg" ></a></li>
+                </ul>
+                <div class="slidebtn1">
+                    <ul>
+                        <li class="current">1</li>
+                        <li>2</li>
+                        <li>3</li>				
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+$(function(){
+	
+	// 图片上下翻滚
+	var len = $('.slidebtn1>ul>li').length;
+	var index = 0;
+	var autoplay;
+	$('.slidebtn1 li').mouseover(function(){
+		index = $('.slidebtn1 li').index(this);
+		showImg(index);
+	}).eq(0).mouseover();
+	
+	$('.slidebox1').hover(function(){
+		clearInterval(autoplay);
+	},function(){
+		autoplay = setInterval(function(){
+			showImg(index)
+			index++;
+			if(index==len){
+				index=0;
+			}
+		},3000);
+	}).trigger('mouseleave');
+
+	function showImg(index){
+		var picheight = $('.slidebox1').height();
+		$('.slidepic1').stop(true,false).animate({top:-picheight*index},600)
+		$('.slidebtn1 li').removeClass('current').eq(index).addClass('current');
+	};
+	
+
+	
+});
+
+
+</script>
     	<div class=" w980">
-    		<div id="main" role="main" class="fl" style="width:695px; position:relative">
-            <h2>悬赏推荐</h2>
-				<ul id="tiles">
-					<li>
-						<img src="images/pic02.jpg" style="margin-bottom: 20px">
-					</li>
-					
-					<c:forEach items="${members}" var="mb" >
-
-						<li>
-						<img src="<%=avatarPath %>${mb.avatar }">
-						<div class="describe">
-							<h3>${mb.member_desc }</h3>
-							<center>
-								<a href="#"><span class="recommend_btn">申请约会</span>
-								</a>
-							</center>
-							<center>
-								<b>${mb.nick_name }</b>
-								<br />
-								${mb.age } ${mb.career } ${mb.resident_place }
-							</center>
-						</div>
-					</li>
-					</c:forEach>
-
-					<li>
-						<img src="images/pic03.jpg" style="margin-bottom: 20px">
-					</li>
-					
-				</ul>
-			</div>        
+    		<div id="main" role="main" class="fl" style="width:695px;">
+            <h2>征婚大厅</h2>
+              <ul id="tiles">
+                 <li>
+                    <img src="images/pic02.jpg"  style="margin-bottom:20px">
+                 </li>
+                <li>
+                    <img src="images/p1.jpg">
+                    <div class="describe">
+                        <h3>520婚恋机构</h3>
+                        <center><a href="#"><span class="recommend_btn">我要推荐</span></a></center>
+                        <center>何先生 27岁 地产经理 广州<br />推荐约会对象，领取红包<b class="red">￥500</b></center>
+                  </div>
+                </li>
+                <li>
+                    <img src="images/pic03.jpg" style="margin-bottom:20px">
+                 </li>
+               <li>
+                    <img src="images/p1.jpg">
+                    <div class="describe">
+                        <h3>520婚恋机构</h3>
+                        <center><a href="#"><span class="recommend_btn">我要推荐</span></a></center>
+                        <center>何先生 27岁 地产经理 广州<br />推荐约会对象，领取红包<b class="red">￥500</b></center>
+                  </div>
+                </li>
+                <li>
+                    <img src="images/p1.jpg">
+                    <div class="describe">
+                        <h3>520婚恋机构</h3>
+                        <center><a href="#"><span class="recommend_btn">我要推荐</span></a></center>
+                        <center>何先生 27岁 地产经理 广州<br />推荐约会对象，领取红包<b class="red">￥500</b></center>
+                  </div>
+                </li>
+                <li>
+                    <img src="images/p1.jpg">
+                    <div class="describe">
+                        <h3>520婚恋机构</h3>
+                        <center><a href="#"><span class="recommend_btn">我要推荐</span></a></center>
+                        <center>何先生 27岁 地产经理 广州<br />推荐约会对象，领取红包<b class="red">￥500</b></center>
+                  </div>
+                </li>
+                <li>
+                    <img src="images/p1.jpg">
+                    <div class="describe">
+                        <h3>520婚恋机构</h3>
+                        <center><a href="#"><span class="recommend_btn">我要推荐</span></a></center>
+                        <center>何先生 27岁 地产经理 广州<br />推荐约会对象，领取红包<b class="red">￥500</b></center>
+                  </div>
+                </li>
+              </ul>
+            </div>        
    	  <div class="success fr">
       	  <h2>成功案例</h2>
           <ul>
@@ -127,12 +201,14 @@ var ScrollToTop=ScrollToTop||{
            	  </li>
              </a>
           </ul>
-          <a id="ScrollToTop" class="btnimg Offscreen" type="button"></a >
-
+           <a id="ScrollToTop" class="btnimg Offscreen" type="button"></a >
         </div>
     </div>
     
     <div class="clear"></div>
+    <%@include file="foot.jsp" %>
+
+              <script src="js/jquery.wookmark.js"></script>
               <script type="text/javascript">
                 $(document).ready(new function() {
                   // Prepare layout options.
@@ -159,11 +235,11 @@ var ScrollToTop=ScrollToTop||{
                   });
                 });
               </script>
-              <script type="text/javascript">
+                <script type="text/javascript">
 $(document).ready(function(){
 	ScrollToTop.setup();
 });
 </script>
-<%@include file="foot.jsp" %>
 </body>
 </html>
+

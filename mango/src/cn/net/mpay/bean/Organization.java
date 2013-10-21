@@ -1,12 +1,15 @@
 package cn.net.mpay.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 	/**
 	*此类由MySQLToBean工具自动生成
 	*备注(数据表的comment字段)：无备注信息
 	*@author Kai 
 	*@since 2013-09-20 17:22:17
 	*/
-
+    @Entity
 	public class Organization{
 	private int org_id;
 	private String login_name;//登录名
@@ -16,6 +19,7 @@ package cn.net.mpay.bean;
 	private String mobile;
 	private String mailbox;//邮箱
 	private String money;//帐号余额
+	@Id
 	public int getOrg_id(){
 		return this.org_id;
 	}
