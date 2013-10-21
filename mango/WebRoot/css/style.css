@@ -464,3 +464,9 @@ h1 span a{ color:#333; font-size:12px; font-weight:normal; text-decoration:none;
 .slidebtn{position:absolute;bottom:10px;right:10px;}
 .slidebtn li{ background:url(../images/pagination.png) left top no-repeat;cursor:pointer;float:left;font-family:arial;height:12px;width:12px;text-indent:-999px;color:#D00000; display:block; margin:0 4px;}
 .slidebtn li.current{background:url(../images/pagination.png) left bottom no-repeat;color:#fff;font-weight:800;}
+
+
+.tipper{
+	display: none;
+	}
+
