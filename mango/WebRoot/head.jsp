@@ -17,15 +17,17 @@ String avatarPath=Constants.loadConfig("AvatarImagePath");
 <link href="<%=basePath%>css/dialog/zebra_dialog.css" rel="stylesheet"  type="text/css" />
 <script type='text/javascript' src="<%=basePath%>/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/jquery.uploadifive.min.js"></script>
+<script src="<%=basePath%>js/My97DatePicker/WdatePicker.js"></script>
 <script type='text/javascript' src="<%=basePath%>/js/zebra_dialog.js"></script> 
 <script type='text/javascript' src="<%=basePath%>/js/jquery.foucs.js" type="text/javascript"></script>
 <script type='text/javascript' src="<%=basePath%>/js/jquery.wookmark.js" type="text/javascript"></script>
-<script type='text/javascript' src="<%=basePath%>/js/area.js" type="text/javascript"></script>
+<script charset="gb2312" type='text/javascript' src="<%=basePath%>/js/PCASClass.js" type="text/javascript"></script>
     <script type="text/javascript" src="<%=basePath%>dwr/engine.js"></script>
     <script type="text/javascript" src="<%=basePath%>dwr/util.js"></script>
     <script type="text/javascript" src="<%=basePath%>dwr/interface/RemoteTest.js"></script><%--
         <script type='text/javascript' src="<%=basePath%>js/dom_init.js"></script>
         --%><script type='text/javascript' src="<%=basePath%>js/chat.js"></script>
+        
 <%--
 
     
@@ -116,8 +118,8 @@ String avatarPath=Constants.loadConfig("AvatarImagePath");
     </div>
     <script language="javascript">
 $(function(){
-	_init_area();
-
+//	_init_area();
+new PCAS("s_province","s_city","s_county","广东省","广州市","天河区");
 	  	 $(window).load(function() {
 	      //  dwr.engine.setActiveReverseAjax(true);
 	      //  dwr.engine.setNotifyServerOnPageUnload(true);
@@ -125,13 +127,7 @@ $(function(){
 
 	});
 
-var Gid  = document.getElementById ;
-var showArea = function(){
-	Gid('show').innerHTML = "<h3>" + Gid('s_province').value + " - " + 
-							Gid('s_city').value + " - " + 
-							Gid('s_county').value + "</h3>"
-}
-Gid('s_county').setAttribute('onchange','showArea()');
+
 
 	
 </script>

@@ -110,7 +110,6 @@ a:hover
 
 
 </style>
-<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <%--<script type="text/javascript" src="js/ImageCropper.js"></script>
 <script type="text/javascript" src="js/diyImage.js"></script>
 --%><script type="text/javascript">
@@ -140,26 +139,9 @@ a:hover
 									当前头像：
 								</div>
 								<div class="fl">
-									<%--<div id="container">
-		<a id="selectBtn" href="javascript:void(0);" onclick="document.getElementById('input').click();"></a>
-		<a id="saveBtn" href="javascript:void(0);" onclick="saveImage();"></a>
-		<input type="file" id="input" size="10" style="visibility:hidden;" onchange="selectImage(this.files)" />
-		
-		<div id="wrapper">
-			<canvas id="cropper"></canvas>
-			<a id="rotateLeftBtn" href="javascript:void(0);" onclick="rotateImage(event);">向左旋转</a>
-			<a id="rotateRightBtn" href="javascript:void(0);" onclick="rotateImage(event);">向右旋转</a>
-
-
-		</div>
-		
-	</div>
+								<span class="confirm_btn2"><a href="#">添加头像</a></span>
+							<%--<iframe src="cut.jsp" width="550px" height="400px"></iframe>	
 								--%>
-								
-							<iframe src="cut.jsp" width="550px" height="400px"></iframe>	
-								
-								
-								
 								
 								</div>
 
@@ -327,6 +309,23 @@ $(function(){
 		     //alert( "Data Saved: "+msg.image);
 		     $("#avatarImage").attr("src",msg.image);
 		   }
+		});
+
+	$(".confirm_btn2").click(function(){
+		new $.Zebra_Dialog({
+		    source: {'iframe': {
+		        'src':  'cut.jsp',
+		        'height': 400
+		    }},
+		    width: 700,
+		    title:  '上传个人头像',
+		    buttons:  [
+		                    {caption: 'Yes', callback: function() {saveImage();}},
+		                    {caption: 'Cancel', callback: function() { }}
+		                ]
+		});
+
+
 		});
 	});
 </script>

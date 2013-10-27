@@ -149,7 +149,9 @@ a:hover
                          </div>
                          <div class="list">
                             <div class="list_tit">出生年月：</div>
-                            <div class="list_con w200"><select name=""></select></div>
+                            <div class="list_con w200">
+                            <input class="Wdate" type="text" onClick="WdatePicker({skin:'green'})">
+                            </div>
                             <div class="list_tit1">属相：</div>
                             <div class="list_con w70">
                             	<select name="">
@@ -172,20 +174,16 @@ a:hover
                          <div class="list">
                             <div class="list_tit">所在地：</div>
                             <div class="list_con w200">
-                            	<select name="">
-                                    <option>广东</option>
+                            	<select name="liveProvince">
                                  </select>
-                                 <select name="">
-                                      <option>广州</option>
+                                 <select name="liveCity">
                                  </select>
                             </div>
                             <div class="list_tit1 ">籍贯：</div>
                             <div class="list_con w200">
-                            	<select name="">
-                                    <option>广东</option>
+                            	<select name="birthProvince">
                                  </select>
-                                 <select name="">
-                                      <option>广州</option>
+                                 <select name="birthCity">
                                  </select>
                             </div>
                          </div>
@@ -276,6 +274,8 @@ var n=document.getElementById("right").scrollHeight;
 layoutHeight=Math.max(l,n);
 document.getElementById("left").style.height=layoutHeight+"px";
 document.getElementById("right").style.height=layoutHeight+"px";
+new PCAS("liveProvince","liveCity","广东省");
+new PCAS("birthProvince","birthCity","广东省");
 
 </script>
 <%@include file="foot.jsp" %>
